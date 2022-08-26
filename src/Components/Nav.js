@@ -1,4 +1,4 @@
-import '../CSS/Nav.scss'
+import '../SCSS/Nav.scss'
 import {useState} from 'react';
 
 const Nav = () => {

@@ -1,12 +1,17 @@
 import React from 'react';
 import '../SCSS/App.css';
 import Nav from './Nav';
-// import {useState, useEffect} from React;
+import Banner from './Banner'
+import MoviesContainer from './MoviesContainer';
+import { useState, useEffect } from React;
 
 const App = () => {
   return (
     <>
       <Nav />
+      <Banner />
+      <div className='divider-div'></div>
+      <MoviesContainer />
     </>
   )
 }

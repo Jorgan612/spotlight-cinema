@@ -1,0 +1,26 @@
+.nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #6B6B6B;
+  height: 10vh;
+}
+
+.app-title {
+  color: #EBAB47;
+}
+
+.search-bar-input {
+  width: 30%;
+  background-color: #D9D9D9;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.dropdown {
+  background-color: #6B6B6B;
+  border: none;
+  color: #EBAB47;
+  font-weight: bolder;
+}

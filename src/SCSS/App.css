@@ -1,0 +1,10 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+}
+
+.divider-div {
+  border-top: 3px solid #6B6B6B;
+}

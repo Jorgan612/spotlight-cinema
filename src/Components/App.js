@@ -11,7 +11,7 @@ const App = () => {
 
 
   const getMovies = async () => {
-    const url = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&page=2'
+    const url = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&page=1'
     setError('')
 
     try {

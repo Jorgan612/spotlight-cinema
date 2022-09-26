@@ -8,3 +8,19 @@
 .divider-div {
   border-top: 3px solid #6B6B6B;
 }
+
+.buttons-div {
+  display: flex;
+  justify-content: center;
+  height: 10vh;
+  padding: 10px;
+}
+
+button {
+  color: #EBAB47;
+  cursor: pointer;
+  padding: 5px;
+  margin: 5px;
+  border: none;
+  font-size: 18px;
+}

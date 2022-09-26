@@ -1,6 +1,19 @@
 .movie-card {
-  border: 2px solid red;
-  height: 100px;
-  width: 100px;
-  margin: 5px;
+  width: 20%;
+  margin: 8px;
+  box-shadow: 3px 3px 5px #000;
 }
+
+.movie-card:hover {
+  transition: .5s;
+  transform: scale(1.1);
+}
+
+.poster-img {
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+
+

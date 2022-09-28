@@ -31,7 +31,7 @@ const App = () => {
   useEffect(() => {
     getMovies();
     // randomMovie();
-  }, []) 
+  }, [pageCount]) 
 
   // const randomMovie = () => {
   //   console.log(movies)

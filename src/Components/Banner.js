@@ -23,17 +23,17 @@ console.log('Movies array', movies[random])
   //   return rando;
   // }
 
-  render() {
-    const filteredQuoteCards = this.state.filteredQuotes.map((quote, index) => {
-      return (
-        <Card
-          text={quote.text}
-          author={quote.author}
-          id={index}
-          key={index}
-       />
-    )
-  });
+  // render() {
+  //   const filteredQuoteCards = this.state.filteredQuotes.map((quote, index) => {
+  //     return (
+  //       <Card
+  //         text={quote.text}
+  //         author={quote.author}
+  //         id={index}
+  //         key={index}
+  //      />
+  //   )
+  // });
 
   return (
     <section className='banner-section'>

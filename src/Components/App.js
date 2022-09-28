@@ -41,14 +41,16 @@ const App = () => {
 
   const previousChangePage = () => {
      setPageCount(pageCount - 1)
-    console.log(" - page count", pageCount)
      getMovies();
   }
 
   const nextChangePage = () => {
     setPageCount(pageCount + 1)
-    console.log(" + page count", pageCount)
      getMovies();
+  }
+
+  const returnToPageOne = () => {
+    setPageCount(1);
   }
 
   return (
@@ -60,7 +62,7 @@ const App = () => {
       <div className='buttons-div'>
         {pageCount > 1 && <button onClick={previousChangePage}>Previous</button>}
         <button onClick={nextChangePage}>Next</button>
-        <p>{pageCount}</p>
+        {pageCount > 5 && <button onClick={returnToPageOne}>Return to Start</button>}
       </div>
     </>
   )

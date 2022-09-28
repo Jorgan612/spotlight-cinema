@@ -64,7 +64,7 @@ const App = () => {
   }
 
   return (
-    <>
+    <div className='app'>
       <Nav />
       <Banner movies={movies} />
       <div className='divider-div'></div>
@@ -77,7 +77,7 @@ const App = () => {
         <button onClick={nextChangePage}>Next</button>
         {pageCount > 5 && <button onClick={returnToPageOne}>Return to Start</button>}
       </div>
-    </>
+    </div>
   )
 }
 export default App;

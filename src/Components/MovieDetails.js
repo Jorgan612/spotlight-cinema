@@ -1,13 +1,22 @@
+import '../SCSS/MovieDetails.css';
+
 const MovieDetails = ({singleView}) => {
   return (
     <div className='movie-details-div'>
-      <h1>{singleView.title}</h1>
-      <h2>{singleView.overview}</h2>
-      <p>{Number(singleView.popularity.toFixed())}</p>
-      <p>{singleView.release_date}</p>
-      <p>{Number(singleView.vote_average.toFixed(1))}</p>
-      <p>{singleView.vote_count}</p>
-      <img className='backdrop-img' id={singleView.id} src={`https://image.tmdb.org/t/p/w500${singleView.backdrop_path}`} alt='single view poster'/>
+      <h1 className='details-title'>{singleView.title}</h1>
+       <div className='img-details-div'>
+        <div className='img-div'>
+          <img className='backdrop-img' id={singleView.id} src={`https://image.tmdb.org/t/p/w500${singleView.backdrop_path}`} alt='single view poster'/>
+        </div>
+          <div className='details-about'>
+            <p className='details-popularity'>Popularity: {Number(singleView.popularity.toFixed())}</p>
+            <p className='details-release-date'>Release Date: {singleView.release_date}</p>
+            <p className='details-avg'>Vote Average: {Number(singleView.vote_average.toFixed(1))}</p>
+            <p className='details-count'>Total Votes: {singleView.vote_count}</p>
+        </div>
+      </div>
+        <p className='overview-title'>Overview: </p>
+        <h2 className='details-overview'>{singleView.overview}</h2>
     </div>
   )
 }

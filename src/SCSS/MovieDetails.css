@@ -1,0 +1,20 @@
+.movie-details-div {
+  display: flex;
+  flex-direction: column;
+  background-color: #2E3033;
+  color: #EBAB47;
+}
+
+.img-details-div {
+  display: flex;
+  color: #EBAB47;
+}
+
+.img-div, .details-about {
+  width: 50%;
+  color: #EBAB47;
+}
+
+.backdrop-img {
+  width: 100%;
+}

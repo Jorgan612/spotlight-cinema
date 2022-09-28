@@ -2,6 +2,9 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+.app {
   background-color: #333;
 }
 
@@ -25,6 +28,6 @@ button {
   font-size: 18px;
 }
  
-p {
+/* p {
   color: white;
-}
+} */

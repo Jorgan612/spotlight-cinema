@@ -4,11 +4,14 @@ import Nav from './Nav';
 import Banner from './Banner'
 import MoviesContainer from './MoviesContainer';
 import { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import MovieDetails from './MovieDetails';
 
 const App = () => {
   const [movies, setMovies] = useState([])
   const [error, setError] = useState('')
   const [pageCount, setPageCount] = useState(1)
+  const [singleView, setSingleView] = useState({})
 
 
   // for search functionality test this url: 
@@ -53,12 +56,22 @@ const App = () => {
     setPageCount(1);
   }
 
+  const getSingleMovieDetails = (id) => {
+    const singleMovie = movies.find((movie) => {
+      return id === movie.id
+    })
+    setSingleView(singleMovie)
+  }
+
   return (
     <>
       <Nav />
       <Banner movies={movies} />
       <div className='divider-div'></div>
-      <MoviesContainer movies={movies} />
+      <Routes>
+        <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} />} />
+        <Route path='/moviedetails' element={<MovieDetails singleView={singleView} />}/>
+      </Routes>
       <div className='buttons-div'>
         {pageCount > 1 && <button onClick={previousChangePage}>Previous</button>}
         <button onClick={nextChangePage}>Next</button>
@@ -68,3 +81,18 @@ const App = () => {
   )
 }
 export default App;
+
+
+//   return(
+//       <div className='App'>
+//           <Nav />
+//           <Routes> 
+//             <Route path='*' element={<Error />} />
+//             <Route path='/' element={<Home />}/>
+//             <Route path='/quotes' element={<Quotes quotes={this.state.quotes} />}/>
+//             <Route path='/search' element={<Search quotes={this.state.quotes} />}/>
+//           </Routes>
+//       </div>
+//     )
+//   }
+// };

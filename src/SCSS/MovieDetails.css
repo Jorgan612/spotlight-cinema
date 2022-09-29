@@ -1,13 +1,19 @@
 .movie-details-div {
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: #2E3033;
   color: #EBAB47;
+}
+
+.details-title {
+  margin: 10px;
 }
 
 .img-details-div {
   display: flex;
   color: #EBAB47;
+  margin: 10px;
 }
 
 .img-div, .details-about {
@@ -15,6 +21,19 @@
   color: #EBAB47;
 }
 
+.details-about {
+  padding: 10px;
+}
+
 .backdrop-img {
   width: 100%;
 }
+
+.details-popularity,
+.details-release-date,
+.details-avg,
+.details-count {
+  margin: 10px;
+}
+
+

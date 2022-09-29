@@ -68,11 +68,11 @@ const App = () => {
         <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} />} />
         <Route path='/moviedetails' element={<MovieDetails singleView={singleView} />}/>
       </Routes>
-      <div className='buttons-div'>
+      {pagePath === '/' && <div className='buttons-div'>
         {pageCount > 1 && <button onClick={previousChangePage}>Previous</button>}
-        {pagePath === '/' && <button onClick={nextChangePage}>Next</button>}
+        <button onClick={nextChangePage}>Next</button>
         {pageCount > 5 && <button onClick={returnToPageOne}>Return to Start</button>}
-      </div>
+      </div>}
     </div>
   )
 }

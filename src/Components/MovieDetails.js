@@ -1,4 +1,5 @@
 import '../SCSS/MovieDetails.css';
+import { Link } from 'react-router-dom';
 
 const MovieDetails = ({singleView}) => {
   return (
@@ -17,6 +18,9 @@ const MovieDetails = ({singleView}) => {
       </div>
         <p className='overview-title'>Overview: </p>
         <h2 className='details-overview'>{singleView.overview}</h2>
+        <Link to='/'>
+          <button className='details-back-btn'>Back</button>
+        </Link>
     </div>
   )
 }

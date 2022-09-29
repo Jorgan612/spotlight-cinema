@@ -12,6 +12,7 @@ const App = () => {
   const [error, setError] = useState('')
   const [pageCount, setPageCount] = useState(1)
   const [singleView, setSingleView] = useState({})
+  const [pagePath, setPagePath] = useState(window.location.pathname)
 
 
   // for search functionality test this url: 
@@ -33,22 +34,15 @@ const App = () => {
   
   useEffect(() => {
     getMovies();
-    // randomMovie();
-  }, [pageCount]) 
-
-  // const randomMovie = () => {
-  //   console.log(movies)
-  //   return Math.floor(Math.random() * movies.length)
-  //   // console.log('rando', rando)
-  // }
+  }, [pageCount, pagePath]) 
 
   const previousChangePage = () => {
-     setPageCount(pageCount - 1)
+     setPageCount(pageCount - 1);
      getMovies();
   }
 
   const nextChangePage = () => {
-    setPageCount(pageCount + 1)
+    setPageCount(pageCount + 1);
      getMovies();
   }
 
@@ -57,16 +51,18 @@ const App = () => {
   }
 
   const getSingleMovieDetails = (id) => {
+    const newPath = window.location.pathname;
     const singleMovie = movies.find((movie) => {
-      return id === movie.id
+      return id === movie.id;
     })
-    setSingleView(singleMovie)
+    setSingleView(singleMovie);
+    setPagePath(newPath);
   }
 
   return (
     <div className='app'>
       <Nav />
-      <Banner movies={movies} />
+      {pagePath === '/' && <Banner movies={movies} />}
       <div className='divider-div'></div>
       <Routes>
         <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} />} />
@@ -74,7 +70,7 @@ const App = () => {
       </Routes>
       <div className='buttons-div'>
         {pageCount > 1 && <button onClick={previousChangePage}>Previous</button>}
-        <button onClick={nextChangePage}>Next</button>
+        {pagePath === '/' && <button onClick={nextChangePage}>Next</button>}
         {pageCount > 5 && <button onClick={returnToPageOne}>Return to Start</button>}
       </div>
     </div>

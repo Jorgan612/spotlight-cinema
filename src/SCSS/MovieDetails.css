@@ -1,14 +1,17 @@
 .movie-details-div {
-  height: 90vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   background-color: #2E3033;
   color: #EBAB47;
   padding: 20px;
 }
 
 .details-border-div {
+  height: 100%;
+  width: 80%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -17,6 +20,7 @@
   margin: 20px;
   border: 4px solid #EBAB47;
   border-radius: 20px;
+  padding: 10px;
 }
 
 .details-title {
@@ -26,7 +30,7 @@
 }
 
 .img-details-div {
-  height:100%;
+  height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -39,7 +43,8 @@
 }
 
 .backdrop-img {
-  height: 100%;
+  height: 15rem;
+  width: 25rem;
   border-radius: 20px;
 }
 
@@ -47,10 +52,6 @@
   padding: 10px;
   font-size: 22px;
   font-weight: bolder;
-}
-
-.backdrop-img {
-  width: 100%;
 }
 
 .details-popularity,
@@ -66,18 +67,19 @@
 }
 
 .details-overview {
-  font-size: 30px;
+  font-size: 1em;
   font-style: italic;
   padding: 20px;
 }
 
 .details-back-btn {
-  height: 5vh;
+  height: 2vh;
   width: 10vw;
   background-color: #2E3033;
   font-weight: bolder;
   font-size: 25px;
   padding: 20px;
+  transform: translate(0px, -60px);
 }
 
 .details-footer {

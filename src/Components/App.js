@@ -60,9 +60,7 @@ const App = () => {
   }
 
   const pageReset = () => {
-    const resetPath = window.location.pathname;
     setPagePath('/');
-    console.log('are you fucking working?', resetPath)
   }
 
   return (

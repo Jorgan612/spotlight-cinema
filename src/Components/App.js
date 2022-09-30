@@ -59,6 +59,12 @@ const App = () => {
     setPagePath(newPath);
   }
 
+  const pageReset = () => {
+    const resetPath = window.location.pathname;
+    setPagePath('/');
+    console.log('are you fucking working?', resetPath)
+  }
+
   return (
     <div className='app'>
       <Nav />
@@ -66,7 +72,7 @@ const App = () => {
       <div className='divider-div'></div>
       <Routes>
         <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} />} />
-        <Route path='/moviedetails' element={<MovieDetails singleView={singleView} />}/>
+        <Route path='/moviedetails' element={<MovieDetails singleView={singleView} pageReset={pageReset} />}/>
       </Routes>
       {pagePath === '/' && <div className='buttons-div'>
         {pageCount > 1 && <button onClick={previousChangePage}>Previous</button>}

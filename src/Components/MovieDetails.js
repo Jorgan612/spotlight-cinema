@@ -17,8 +17,10 @@ const MovieDetails = ({ singleView, pageReset }) => {
             <p className='details-count'>Total Votes: {singleView.vote_count}</p>
           </div>
         </div>
+        <div className='overview-container-div'>
           <p className='overview-title'>Overview: </p>
           <p className='details-overview'>{singleView.overview}</p>
+        </div>
       </div>
       <footer className='details-footer'>
         <Link to='/'>

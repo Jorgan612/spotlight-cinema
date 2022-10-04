@@ -64,7 +64,7 @@ const App = () => {
   }
 
   return (
-    <div className='app'>
+    <div className='app selector'>
       <Nav />
       {pagePath === '/' && <Banner movies={movies} />}
       <div className='divider-div'></div>
@@ -73,9 +73,9 @@ const App = () => {
         <Route path='/moviedetails' element={<MovieDetails singleView={singleView} pageReset={pageReset} />}/>
       </Routes>
       {pagePath === '/' && <div className='buttons-div'>
-        {pageCount > 1 && <button onClick={previousChangePage}>Previous</button>}
-        <button onClick={nextChangePage}>Next</button>
-        {pageCount > 5 && <button onClick={returnToPageOne}>Return to Start</button>}
+        {pageCount > 1 && <button className='btn selector' onClick={previousChangePage}>Previous</button>}
+        <button className='btn selector' onClick={nextChangePage}>Next</button>
+        {pageCount > 5 && <button className='btn selector' onClick={returnToPageOne}>Return to Start</button>}
       </div>}
     </div>
   )

@@ -7,13 +7,13 @@ const Nav = () => {
     <nav className='nav'>
       <h1 className='app-title'>Spotlight Cinema</h1>
       <input 
-        className='search-bar-input'
+        className='search-bar-input selector'
         type='text'
         placeholder='Search by title...'
         value={searchPhrase}
         onChange={event => setSearchPhrase(event.target.value)}
       />
-        <select className='dropdown'>
+        <select className='dropdown selector'>
           <option value="genres">All Genres</option>
           <option value="action">Action</option>
           <option value="horror">Horror</option>

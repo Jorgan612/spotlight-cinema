@@ -24,7 +24,7 @@ const MovieDetails = ({ singleView, pageReset }) => {
       </div>
       <footer className='details-footer'>
         <Link to='/'>
-          <button className='details-back-btn' onClick={pageReset}>Back</button>
+          <button className='details-back-btn selector' onClick={pageReset}>Back</button>
         </Link>
       </footer>
     </div>

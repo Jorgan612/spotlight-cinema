@@ -13,6 +13,7 @@ const App = () => {
   const [pageCount, setPageCount] = useState(1)
   const [singleView, setSingleView] = useState({})
   const [pagePath, setPagePath] = useState(window.location.pathname)
+  const [genres, setGenres] = useState([])
 
 
   // for search functionality test this url: 
@@ -31,9 +32,23 @@ const App = () => {
       setError(error.message);
     }
   }
+
+  const getGenre = async () => {
+    const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US`
+    setError('')
+
+    try {
+      const response = await fetch(url);
+      const genres = await response.json();
+      setGenres(genres.genres);
+    } catch(error) {
+      setError(error.message);
+    }
+  }
   
   useEffect(() => {
     getMovies();
+    getGenre();
   }, [pageCount, pagePath]) 
 
   const previousChangePage = () => {
@@ -65,7 +80,7 @@ const App = () => {
 
   return (
     <div className='app selector'>
-      <Nav />
+      <Nav genres={genres}/>
       {pagePath === '/' && <Banner movies={movies} />}
       <div className='divider-div'></div>
       <Routes>

@@ -1,7 +1,13 @@
 import '../SCSS/Nav.css'
 import {useState} from 'react';
 
-const Nav = () => {
+const Nav = ({genres}) => {
+  console.log('genres', genres)
+  const dropdownList = genres.map((genre) => {
+      return <option id={genre.id} value={genre.name}>{genre.name}</option>
+    })
+  
+
   const [searchPhrase, setSearchPhrase] = useState('')
   return (
     <nav className='nav'>
@@ -15,9 +21,11 @@ const Nav = () => {
       />
         <select className='dropdown selector'>
           <option value="genres">All Genres</option>
+          {dropdownList}
+          {/* <option value="genres">All Genres</option>
           <option value="action">Action</option>
           <option value="horror">Horror</option>
-          <option value="romance">Romance</option>
+          <option value="romance">Romance</option> */}
         </select>
     </nav>
   )

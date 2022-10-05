@@ -15,7 +15,6 @@ const App = () => {
   const [singleView, setSingleView] = useState({})
   const [genres, setGenres] = useState([])
 
-
   // for search functionality test this url: 
   // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
 
@@ -50,6 +49,9 @@ const App = () => {
     getMovies();
     getGenre();
   }, [pageCount, location]) 
+
+
+  console.log("LOCATION ----->", location)
 
   const previousChangePage = () => {
      setPageCount(pageCount - 1);

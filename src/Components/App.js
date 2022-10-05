@@ -4,11 +4,15 @@ import Nav from './Nav';
 import Banner from './Banner'
 import MoviesContainer from './MoviesContainer';
 import { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import MovieDetails from './MovieDetails';
 
 const App = () => {
   const [movies, setMovies] = useState([])
   const [error, setError] = useState('')
   const [pageCount, setPageCount] = useState(1)
+  const [singleView, setSingleView] = useState({})
+  const [pagePath, setPagePath] = useState(window.location.pathname)
 
 
   // for search functionality test this url: 
@@ -30,22 +34,15 @@ const App = () => {
   
   useEffect(() => {
     getMovies();
-    // randomMovie();
-  }, [pageCount]) 
-
-  // const randomMovie = () => {
-  //   console.log(movies)
-  //   return Math.floor(Math.random() * movies.length)
-  //   // console.log('rando', rando)
-  // }
+  }, [pageCount, pagePath]) 
 
   const previousChangePage = () => {
-     setPageCount(pageCount - 1)
+     setPageCount(pageCount - 1);
      getMovies();
   }
 
   const nextChangePage = () => {
-    setPageCount(pageCount + 1)
+    setPageCount(pageCount + 1);
      getMovies();
   }
 
@@ -53,18 +50,34 @@ const App = () => {
     setPageCount(1);
   }
 
+  const getSingleMovieDetails = (id) => {
+    const newPath = window.location.pathname;
+    const singleMovie = movies.find((movie) => {
+      return id === movie.id;
+    })
+    setSingleView(singleMovie);
+    setPagePath(newPath);
+  }
+
+  const pageReset = () => {
+    setPagePath('/');
+  }
+
   return (
-    <>
+    <div className='app'>
       <Nav />
-      <Banner movies={movies} />
+      {pagePath === '/' && <Banner movies={movies} />}
       <div className='divider-div'></div>
-      <MoviesContainer movies={movies} />
-      <div className='buttons-div'>
+      <Routes>
+        <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} />} />
+        <Route path='/moviedetails' element={<MovieDetails singleView={singleView} pageReset={pageReset} />}/>
+      </Routes>
+      {pagePath === '/' && <div className='buttons-div'>
         {pageCount > 1 && <button onClick={previousChangePage}>Previous</button>}
         <button onClick={nextChangePage}>Next</button>
         {pageCount > 5 && <button onClick={returnToPageOne}>Return to Start</button>}
-      </div>
-    </>
+      </div>}
+    </div>
   )
 }
 export default App;

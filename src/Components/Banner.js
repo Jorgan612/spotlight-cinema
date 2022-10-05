@@ -14,8 +14,8 @@ const Banner = ({movies}) => {
   // )
 
   let random = Math.floor(Math.random() * movies.length)
-console.log('randomMovie', random)
-console.log('Movies array', movies[random])
+// console.log('randomMovie', random)
+// console.log('Movies array', movies[random])
   // console.log('______', movies)
   // const randomMovie = () => {
   //   let rando =  Math.floor(Math.random() * movies.length)

@@ -1,7 +1,7 @@
 import '../SCSS/MovieDetails.css';
 import { Link } from 'react-router-dom';
 
-const MovieDetails = ({ singleView, pageReset }) => {
+const MovieDetails = ({ singleView }) => {
   return (
     <div className='movie-details-div'>
       <div className='details-border-div'>
@@ -24,7 +24,7 @@ const MovieDetails = ({ singleView, pageReset }) => {
       </div>
       <footer className='details-footer'>
         <Link to='/'>
-          <button className='details-back-btn selector' onClick={pageReset}>Back</button>
+          <button className='details-back-btn selector'>Back</button>
         </Link>
       </footer>
     </div>

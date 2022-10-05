@@ -4,15 +4,15 @@ import Nav from './Nav';
 import Banner from './Banner'
 import MoviesContainer from './MoviesContainer';
 import { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 
 const App = () => {
+  const location = useLocation()
   const [movies, setMovies] = useState([])
   const [error, setError] = useState('')
   const [pageCount, setPageCount] = useState(1)
   const [singleView, setSingleView] = useState({})
-  const [pagePath, setPagePath] = useState(window.location.pathname)
   const [genres, setGenres] = useState([])
 
 
@@ -49,7 +49,7 @@ const App = () => {
   useEffect(() => {
     getMovies();
     getGenre();
-  }, [pageCount, pagePath]) 
+  }, [pageCount, location]) 
 
   const previousChangePage = () => {
      setPageCount(pageCount - 1);
@@ -66,28 +66,22 @@ const App = () => {
   }
 
   const getSingleMovieDetails = (id) => {
-    const newPath = window.location.pathname;
     const singleMovie = movies.find((movie) => {
       return id === movie.id;
     })
     setSingleView(singleMovie);
-    setPagePath(newPath);
-  }
-
-  const pageReset = () => {
-    setPagePath('/');
   }
 
   return (
     <div className='app selector'>
       <Nav genres={genres}/>
-      {pagePath === '/' && <Banner movies={movies} />}
+      {location.pathname === '/' && <Banner movies={movies} />}
       <div className='divider-div'></div>
       <Routes>
         <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} />} />
-        <Route path='/moviedetails' element={<MovieDetails singleView={singleView} pageReset={pageReset} />}/>
+        <Route path='/moviedetails' element={<MovieDetails singleView={singleView} />}/>
       </Routes>
-      {pagePath === '/' && <div className='buttons-div'>
+        {location.pathname === '/' && <div className='buttons-div'>
         {pageCount > 1 && <button className='btn selector' onClick={previousChangePage}>Previous</button>}
         <button className='btn selector' onClick={nextChangePage}>Next</button>
         {pageCount > 5 && <button className='btn selector' onClick={returnToPageOne}>Return to Start</button>}

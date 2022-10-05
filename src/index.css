@@ -1,3 +1,18 @@
+/* FONT_NAME = Your font name, i.e. Arial */
+/* PATH_TO_YOUR_FILE = The relative path to your font from index.css */
+/* Note: Most of the Google fonts I've seen are .ttf which is the 'truetype' format */
+
+
+@font-face {
+  font-family: 'Limelight';
+  src: local('Limelight-regular'),
+    url('./fonts/Limelight-Regular.ttf') format('truetype');
+}
+
+.selector {
+  font-family: 'Limelight';
+ }
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

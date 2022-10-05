@@ -8,14 +8,20 @@
 
 .app-title {
   color: #EBAB47;
+  font-size: 3.5em;
 }
 
 .search-bar-input {
   width: 30%;
-  background-color: #D9D9D9;
+  background-color: #dedbdb;
   border: none;
   border-radius: 20px;
   padding: 10px;
+  font-size: 1.5em;
+}
+
+.search-bar-input:focus {
+  outline:auto #EBAB47;
 }
 
 .dropdown {
@@ -23,4 +29,10 @@
   border: none;
   color: #EBAB47;
   font-weight: bolder;
+  font-size: 1.5em;
+}
+
+.dropdown:focus {
+  /* border: 2px solid #dedbdb; */
+  outline:auto #EBAB47;
 }

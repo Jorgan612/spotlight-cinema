@@ -19,6 +19,10 @@
   padding: 10px;
 }
 
+.btn {
+  font-size: 2em;
+}
+
 button {
   color: #EBAB47;
   cursor: pointer;
@@ -27,4 +31,8 @@ button {
   border: none;
   font-size: 18px;
   background-color: #333;
+}
+
+button:hover {
+  color: #fcc771;
 }

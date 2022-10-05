@@ -13,6 +13,7 @@ const App = () => {
   const [pageCount, setPageCount] = useState(1)
   const [singleView, setSingleView] = useState({})
   const [pagePath, setPagePath] = useState(window.location.pathname)
+  const [genres, setGenres] = useState([])
 
 
   // for search functionality test this url: 
@@ -31,9 +32,23 @@ const App = () => {
       setError(error.message);
     }
   }
+
+  const getGenre = async () => {
+    const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US`
+    setError('')
+
+    try {
+      const response = await fetch(url);
+      const genres = await response.json();
+      setGenres(genres.genres);
+    } catch(error) {
+      setError(error.message);
+    }
+  }
   
   useEffect(() => {
     getMovies();
+    getGenre();
   }, [pageCount, pagePath]) 
 
   const previousChangePage = () => {
@@ -64,8 +79,8 @@ const App = () => {
   }
 
   return (
-    <div className='app'>
-      <Nav />
+    <div className='app selector'>
+      <Nav genres={genres}/>
       {pagePath === '/' && <Banner movies={movies} />}
       <div className='divider-div'></div>
       <Routes>
@@ -73,9 +88,9 @@ const App = () => {
         <Route path='/moviedetails' element={<MovieDetails singleView={singleView} pageReset={pageReset} />}/>
       </Routes>
       {pagePath === '/' && <div className='buttons-div'>
-        {pageCount > 1 && <button onClick={previousChangePage}>Previous</button>}
-        <button onClick={nextChangePage}>Next</button>
-        {pageCount > 5 && <button onClick={returnToPageOne}>Return to Start</button>}
+        {pageCount > 1 && <button className='btn selector' onClick={previousChangePage}>Previous</button>}
+        <button className='btn selector' onClick={nextChangePage}>Next</button>
+        {pageCount > 5 && <button className='btn selector' onClick={returnToPageOne}>Return to Start</button>}
       </div>}
     </div>
   )

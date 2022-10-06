@@ -13,6 +13,7 @@ console.log("MOVIES PROP", movies)
 
     return <BannerCard 
       title={movie.original_title}
+      key={movie.id}
     />
    })
 

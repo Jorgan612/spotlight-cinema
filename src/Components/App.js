@@ -8,12 +8,12 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 
 const App = () => {
-  const location = useLocation()
-  const [movies, setMovies] = useState([])
-  const [error, setError] = useState('')
-  const [pageCount, setPageCount] = useState(1)
-  const [singleView, setSingleView] = useState({})
-  const [genres, setGenres] = useState([])
+  const location = useLocation();
+  const [movies, setMovies] = useState([]);
+  const [error, setError] = useState('');
+  const [pageCount, setPageCount] = useState(1);
+  const [singleView, setSingleView] = useState({});
+  const [genres, setGenres] = useState([]);
 
   // for search functionality test this url: 
   // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
@@ -50,9 +50,6 @@ const App = () => {
     getGenre();
   }, [pageCount, location]) 
 
-
-  console.log("LOCATION ----->", location)
-
   const previousChangePage = () => {
      setPageCount(pageCount - 1);
      getMovies();
@@ -77,7 +74,7 @@ const App = () => {
   return (
     <div className='app selector'>
       <Nav genres={genres}/>
-      {location.pathname === '/' && <Banner movies={movies} />}
+      {location.pathname === '/' && movies.length > 0 && <Banner movies={movies} />}
       <div className='divider-div'></div>
       <Routes>
         <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} />} />

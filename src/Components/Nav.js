@@ -3,7 +3,7 @@ import {useState} from 'react';
 
 const Nav = ({genres}) => {
   const dropdownList = genres.map((genre) => {
-      return <option id={genre.id} value={genre.name}>{genre.name}</option>
+      return <option key={genre.id} id={genre.id} value={genre.name}>{genre.name}</option>
     })
   
 

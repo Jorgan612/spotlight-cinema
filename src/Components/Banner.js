@@ -3,22 +3,25 @@ import '../SCSS/Banner.css';
 import BannerCard from './BannerCard';
 
 
-const Banner = ( {movies} ) => {
-console.log("MOVIES PROP", movies)
+const Banner = ( {movies, video} ) => {
+  console.log('video PARAM', video)
+// console.log("MOVIES PROP", movies)
    let random = [movies[Math.floor(Math.random() * movies.length)]]
-   console.log("RANDOM", random)
+  //  console.log("RANDOM", random)
+  // let random;
 
-   const setRandomMovieBanner = random.map((movie) => {
-    console.log("RANDOM MOVIE", movie)
+   const setRandomMovieBanner = video.videos.results.map((video) => {
+    // console.log("RANDOM MOVIE", movie)
 
     return <BannerCard 
-      title={movie.original_title}
-      key={movie.id}
+      videoKey={video.key}
+      key={video.id}
     />
    })
 
   return (
     <section className='banner-section'>
+      <h1>{video.title}</h1>
       {setRandomMovieBanner}
     </section>
   )

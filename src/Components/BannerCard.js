@@ -1,7 +1,7 @@
 
-const BannerCard = ( {title} ) => {
+const BannerCard = ( {videoKey} ) => {
   return (
-    <h1>{title}</h1>
+    <h1>`https://www.youtube.com/watch?v={videoKey}`</h1>
   )
 }
 

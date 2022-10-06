@@ -1,5 +1,6 @@
 import React from 'react';
 import '../SCSS/App.css';
+// import { getVideo } from '../ApiCalls/apiCalls.js';
 import Nav from './Nav';
 import Banner from './Banner'
 import MoviesContainer from './MoviesContainer';
@@ -14,10 +15,14 @@ const App = () => {
   const [pageCount, setPageCount] = useState(1);
   const [singleView, setSingleView] = useState({});
   const [genres, setGenres] = useState([]);
+  const [video, setVideo] = useState([])
 
   // for search functionality test this url: 
   // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
 
+
+
+  // console.log('video in App', video);
 
   const getMovies = async () => {
     const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&page=${pageCount}`
@@ -44,10 +49,30 @@ const App = () => {
       setError(error.message);
     }
   }
+
+  const getVideo = async (movies) => {
+    console.log('movies param ---', movies)
+    // const url = `https://api.themoviedb.org/3/movie/550/videos?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US`
+    // let random = [movies[Math.floor(Math.random() * movies.length)]]
+    // console.log('random movie id', random)
+    const url = `https://api.themoviedb.org/3/movie/550?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&append_to_response=videos`;
+    setError();
+  
+    try {
+      const response = await fetch(url);
+      const video = await response.json();
+      setVideo(video);
+    } catch(error) {
+      setError(error.message);
+      // console.log(error.message);
+    }
+  }
+
   
   useEffect(() => {
     getMovies();
     getGenre();
+    getVideo(movies);
   }, [pageCount, location]) 
 
   const previousChangePage = () => {
@@ -74,7 +99,7 @@ const App = () => {
   return (
     <div className='app selector'>
       <Nav genres={genres}/>
-      {location.pathname === '/' && movies.length > 0 && <Banner movies={movies} />}
+      {location.pathname === '/' && movies.length > 0 && <Banner video={video} movies={movies} />}
       <div className='divider-div'></div>
       <Routes>
         <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} />} />

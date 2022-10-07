@@ -1,7 +1,13 @@
+// import YouTubePlayer from 'react-player/lib/players/YouTube'
+import ReactPlayer from "react-player";
+
 
 const BannerCard = ( {videoKey} ) => {
   return (
-    <h1>`https://www.youtube.com/watch?v={videoKey}`</h1>
+    <ReactPlayer
+  url={`https://www.youtube.com/watch?v=${videoKey}`}
+/>
+    
   )
 }
 

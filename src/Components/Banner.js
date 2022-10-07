@@ -1,47 +1,28 @@
-import { useEffect } from 'react';
+// import { useState } from 'react';
 import '../SCSS/Banner.css';
-import MovieCard from './MovieCard';
-
-const Banner = ({movies}) => {
-  
-  
-  // left off looking at Suzie's example 
+import BannerCard from './BannerCard';
 
 
+const Banner = ( {movies, video} ) => {
+  console.log('video PARAM', video)
+// console.log("MOVIES PROP", movies)
+   let random = [movies[Math.floor(Math.random() * movies.length)]]
+  //  console.log("RANDOM", random)
+  // let random;
 
-  // return (
+   const setRandomMovieBanner = video.videos.results.map((video) => {
+    // console.log("RANDOM MOVIE", movie)
 
-  // )
-
-  let random = Math.floor(Math.random() * movies.length)
-// console.log('randomMovie', random)
-// console.log('Movies array', movies[random])
-  // console.log('______', movies)
-  // const randomMovie = () => {
-  //   let rando =  Math.floor(Math.random() * movies.length)
-  //   console.log('rando', rando)
-  //   return rando;
-  // }
-
-  // render() {
-  //   const filteredQuoteCards = this.state.filteredQuotes.map((quote, index) => {
-  //     return (
-  //       <Card
-  //         text={quote.text}
-  //         author={quote.author}
-  //         id={index}
-  //         key={index}
-  //      />
-  //   )
-  // });
+    return <BannerCard 
+      videoKey={video.key}
+      key={video.id}
+    />
+   })
 
   return (
     <section className='banner-section'>
-      <MovieCard />
-      <p>TEST</p>
-      <p>{random}</p>
-      <p>{random.title}</p>
-      {/* <MovieCard rando={randomMovie}/>  */}
+      <h1>{video.title}</h1>
+      {setRandomMovieBanner}
     </section>
   )
 }

@@ -51,13 +51,14 @@ const App = () => {
   }
 
   const getVideo = async (movies) => {
-    console.log('movies param ---', movies)
+    // console.log('movies param ---', movies)
     // const url = `https://api.themoviedb.org/3/movie/550/videos?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US`
     // let random = [movies[Math.floor(Math.random() * movies.length)]]
     // console.log('random movie id', random)
+    
     const url = `https://api.themoviedb.org/3/movie/550?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&append_to_response=videos`;
     setError();
-  
+    
     try {
       const response = await fetch(url);
       const video = await response.json();
@@ -67,14 +68,13 @@ const App = () => {
       // console.log(error.message);
     }
   }
-
   
   useEffect(() => {
+    getVideo(movies);
     getMovies();
     getGenre();
-    getVideo(movies);
   }, [pageCount, location]) 
-
+  
   const previousChangePage = () => {
      setPageCount(pageCount - 1);
      getMovies();
@@ -99,7 +99,7 @@ const App = () => {
   return (
     <div className='app selector'>
       <Nav genres={genres}/>
-      {location.pathname === '/' && movies.length > 0 && <Banner video={video} movies={movies} />}
+      {location.pathname === '/' && movies.length > 0 && <Banner video={video} />}
       <div className='divider-div'></div>
       <Routes>
         <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} />} />

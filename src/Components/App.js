@@ -48,15 +48,19 @@ const App = () => {
   }
 
   const getVideo = async (movies) => {
-
     //>2, <1000 range for movies
+  //   function random(min, max) {
+  //     return Math.floor(Math.random() * (max - min + 1)) + min;
+  // }
+   
+  // var rand = random(2, 4);
+  // console.log(rand);
 
-    // console.log('movies param ---', movies)
-    // const url = `https://api.themoviedb.org/3/movie/550/videos?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US`
-    // let random = [movies[Math.floor(Math.random() * movies.length)]]
-    // console.log('random movie id', random)
-    
-    const url = `https://api.themoviedb.org/3/movie/500?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&append_to_response=videos`;
+    // LEFT OFF TRYING TO GET RANDOM MOVIE TRAILER BY RANDOM ID BETWEEN TWO NUMBERS START HERE NEXT MEETING!!
+
+  const randomNum = Math.floor(Math.random() * (1000 - 2 + 1)) + 2;
+    console.log('randomNum', randomNum)
+    const url = `https://api.themoviedb.org/3/movie/${randomNum}?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&append_to_response=videos`;
     setError();
     
     try {

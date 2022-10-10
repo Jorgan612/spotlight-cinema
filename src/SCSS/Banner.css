@@ -1,7 +1,6 @@
 .banner-section {
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   padding: 1em;
   height: 50vh;
   width: 100vw;
@@ -11,8 +10,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* position: relative; */
-  /* padding-top: 56.25%;  */
-  /* Player ratio: 100 / (1280 / 720) */
-  /* margin-left: 20%; */
 }

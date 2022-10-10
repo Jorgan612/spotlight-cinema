@@ -15,7 +15,7 @@ const App = () => {
   const [pageCount, setPageCount] = useState(1);
   const [singleView, setSingleView] = useState({});
   const [genres, setGenres] = useState([]);
-  const [video, setVideo] = useState([])
+  const [video, setVideo] = useState([]);
 
   // for search functionality test this url: 
   // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
@@ -23,7 +23,7 @@ const App = () => {
 
   const getMovies = async () => {
     const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&page=${pageCount}`
-    setError('')
+    setError('');
 
     try {
       const response = await fetch(url);
@@ -56,7 +56,7 @@ const App = () => {
     // let random = [movies[Math.floor(Math.random() * movies.length)]]
     // console.log('random movie id', random)
     
-    const url = `https://api.themoviedb.org/3/movie/900?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&append_to_response=videos`;
+    const url = `https://api.themoviedb.org/3/movie/500?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&append_to_response=videos`;
     setError();
     
     try {

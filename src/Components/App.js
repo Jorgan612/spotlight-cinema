@@ -47,7 +47,38 @@ const App = () => {
     }
   }
 
-  const getVideo = async (movies) => {
+  const getVideo = async () => {
+    let url;
+    
+    const randomNum = Math.floor(Math.random() * (1000 - 2 + 1)) + 2;
+       url = `https://api.themoviedb.org/3/movie/${randomNum}?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&append_to_response=videos`;
+        setError();
+        try {
+          const response = await fetch(url);
+          const video = await response.json();
+          setVideo(video);
+        } catch(error) {
+          setError(error.message);
+        }
+       url = 'https://api.themoviedb.org/3/movie/900?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&append_to_response=videos'
+      setError();
+        try {
+          const response = await fetch(url);
+          const video = await response.json();
+          setVideo(video);
+        } catch(error) {
+          setError(error.message);
+        
+      }
+    }
+  
+      
+  
+  
+    
+    //EDGE CASE FOR EMPTY VIDEO OBJ ARRAY
+    //OBJ NOT FOUND
+
     //>2, <1000 range for movies
   //   function random(min, max) {
   //     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -57,23 +88,37 @@ const App = () => {
   // console.log(rand);
 
     // LEFT OFF TRYING TO GET RANDOM MOVIE TRAILER BY RANDOM ID BETWEEN TWO NUMBERS START HERE NEXT MEETING!!
+    // console.log('VID.LENGTH BEFORE COND', video.length)
+    // if(video.length === 0) {
+    //   // console.log('vid length', video.length)
+    //   url = 'https://api.themoviedb.org/3/movie/900?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&append_to_response=videos'
+    //   setError();
+    //     try {
+    //       const response = await fetch(url);
+    //       const video = await response.json();
+    //       setVideo(video);
+    //           console.log('VID.LENGTH AFTER COND', video)
 
-  const randomNum = Math.floor(Math.random() * (1000 - 2 + 1)) + 2;
-    console.log('randomNum', randomNum)
-    const url = `https://api.themoviedb.org/3/movie/${randomNum}?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&append_to_response=videos`;
-    setError();
-    
-    try {
-      const response = await fetch(url);
-      const video = await response.json();
-      setVideo(video);
-    } catch(error) {
-      setError(error.message);
-    }
-  }
+    //     } catch(error) {
+    //       setError(error.message);
+    //     }
+    // } else {
+    //   const randomNum = Math.floor(Math.random() * (1000 - 2 + 1)) + 2;
+    //     console.log('randomNum', randomNum)
+    //    url = `https://api.themoviedb.org/3/movie/${randomNum}?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&append_to_response=videos`;
+    //     setError();
+    //     try {
+    //       const response = await fetch(url);
+    //       const video = await response.json();
+    //       setVideo(video);
+    //     } catch(error) {
+    //       setError(error.message);
+    //     }
+    // } 
+  
   
   useEffect(() => {
-    getVideo(movies);
+    getVideo();
     getMovies();
     getGenre();
   }, [pageCount, location]) 

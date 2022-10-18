@@ -1,29 +1,16 @@
-// import { useState } from 'react';
 import '../SCSS/Banner.css';
-import BannerCard from './BannerCard';
+import ReactPlayer from "react-player";
 
-
-const Banner = ( {movies, video} ) => {
-  console.log('video PARAM', video)
-// console.log("MOVIES PROP", movies)
-   let random = [movies[Math.floor(Math.random() * movies.length)]]
-  //  console.log("RANDOM", random)
-  // let random;
-
-   const setRandomMovieBanner = video.videos.results.map((video) => {
-    // console.log("RANDOM MOVIE", movie)
-
-    return <BannerCard 
-      videoKey={video.key}
-      key={video.id}
-    />
-   })
-
+const Banner = ( { video } ) => {
   return (
-    <section className='banner-section'>
-      <h1>{video.title}</h1>
-      {setRandomMovieBanner}
-    </section>
+      <section className='banner-section'>
+        <ReactPlayer 
+          className='player-wrapper'
+          url={`https://www.youtube.com/watch?v=${video?.videos?.results[0]?.key}`}
+          width='40%'
+          height='100%'
+        />
+      </section>
   )
 }
 

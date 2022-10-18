@@ -48,28 +48,41 @@ const App = () => {
   }
 
   const getVideo = async () => {
-    let url;
+/*issue1: cannot get the conditional to work correctly (not always filling props/cannot always see it passing down to banner componenet but works if hardcoded - console log for video prop)
+issue2: state doesn't always seem to be setting correctly if trying to randomise (see console logs) but also getting double responses 
+issue3: looking at the API stuff - different response objects if what is returned doesn't have a video (see examples)*/
     
+let url;
     const randomNum = Math.floor(Math.random() * (1000 - 2 + 1)) + 2;
+    // console.log('ran # =>', randomNum)
+     
        url = `https://api.themoviedb.org/3/movie/${randomNum}?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&append_to_response=videos`;
         setError();
         try {
           const response = await fetch(url);
-          const video = await response.json();
-          setVideo(video);
+          const videoResponse = await response.json();
+          console.log('RESPONSE', videoResponse)
+           if(videoResponse.success !== false && videoResponse?.videos?.results?.length >= 1) {
+            console.log('I AM SETTING THE VIDEO!!!')
+              setVideo(videoResponse);  
+           } else if (video.length === 0) {
+            console.log('I AM GETTING A SECOND VIDEO SINCE YOU BROKE')
+            getVideo();
+           }
         } catch(error) {
           setError(error.message);
         }
-       url = 'https://api.themoviedb.org/3/movie/900?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&append_to_response=videos'
-      setError();
-        try {
-          const response = await fetch(url);
-          const video = await response.json();
-          setVideo(video);
-        } catch(error) {
-          setError(error.message);
-        
-      }
+        //below is HARDCODED 
+
+      //  url = 'https://api.themoviedb.org/3/movie/900?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&append_to_response=videos'
+      // setError();
+      //   try {
+      //     const response = await fetch(url);
+      //     const video = await response.json();
+      //     setVideo(video);
+      //   } catch(error) {
+      //     setError(error.message);
+      // }
     }
   
       
@@ -116,13 +129,21 @@ const App = () => {
     //     }
     // } 
   
+    // console.log("2: PAGE COUNT", pageCount)
+    // console.log('3: LOCATION', location)
   
   useEffect(() => {
     getVideo();
     getMovies();
     getGenre();
   }, [pageCount, location]) 
-  
+
+
+  // useEffect(() => {
+  //   console.log('useEffect===>', video)
+  // }, [video])
+
+ 
   const previousChangePage = () => {
      setPageCount(pageCount - 1);
      getMovies();

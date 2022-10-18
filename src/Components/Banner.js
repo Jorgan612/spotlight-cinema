@@ -2,9 +2,6 @@ import '../SCSS/Banner.css';
 import ReactPlayer from "react-player";
 
 const Banner = ( { video } ) => {
-  // console.log('video prop', video)
-  // console.log('video at index 0', video.videos.results[0].key)
-  // const videoKey = video.videos.results[0].key
   return (
       <section className='banner-section'>
         <ReactPlayer 

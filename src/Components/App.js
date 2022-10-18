@@ -1,6 +1,5 @@
 import React from 'react';
 import '../SCSS/App.css';
-// import { getVideo } from '../ApiCalls/apiCalls.js';
 import Nav from './Nav';
 import Banner from './Banner'
 import MoviesContainer from './MoviesContainer';
@@ -47,90 +46,23 @@ const App = () => {
     }
   }
 
-  const getVideo = async () => {
-/*issue1: cannot get the conditional to work correctly (not always filling props/cannot always see it passing down to banner componenet but works if hardcoded - console log for video prop)
-issue2: state doesn't always seem to be setting correctly if trying to randomise (see console logs) but also getting double responses 
-issue3: looking at the API stuff - different response objects if what is returned doesn't have a video (see examples)*/
-    
+  const getVideo = async () => {    
 let url;
-    const randomNum = Math.floor(Math.random() * (1000 - 2 + 1)) + 2;
-    // console.log('ran # =>', randomNum)
-     
+    const randomNum = Math.floor(Math.random() * (1000 - 2 + 1)) + 2;     
        url = `https://api.themoviedb.org/3/movie/${randomNum}?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&append_to_response=videos`;
         setError();
         try {
           const response = await fetch(url);
           const videoResponse = await response.json();
-          console.log('RESPONSE', videoResponse)
            if(videoResponse.success !== false && videoResponse?.videos?.results?.length >= 1) {
-            console.log('I AM SETTING THE VIDEO!!!')
               setVideo(videoResponse);  
            } else if (video.length === 0) {
-            console.log('I AM GETTING A SECOND VIDEO SINCE YOU BROKE')
             getVideo();
            }
         } catch(error) {
           setError(error.message);
         }
-        //below is HARDCODED 
-
-      //  url = 'https://api.themoviedb.org/3/movie/900?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&append_to_response=videos'
-      // setError();
-      //   try {
-      //     const response = await fetch(url);
-      //     const video = await response.json();
-      //     setVideo(video);
-      //   } catch(error) {
-      //     setError(error.message);
-      // }
     }
-  
-      
-  
-  
-    
-    //EDGE CASE FOR EMPTY VIDEO OBJ ARRAY
-    //OBJ NOT FOUND
-
-    //>2, <1000 range for movies
-  //   function random(min, max) {
-  //     return Math.floor(Math.random() * (max - min + 1)) + min;
-  // }
-   
-  // var rand = random(2, 4);
-  // console.log(rand);
-
-    // LEFT OFF TRYING TO GET RANDOM MOVIE TRAILER BY RANDOM ID BETWEEN TWO NUMBERS START HERE NEXT MEETING!!
-    // console.log('VID.LENGTH BEFORE COND', video.length)
-    // if(video.length === 0) {
-    //   // console.log('vid length', video.length)
-    //   url = 'https://api.themoviedb.org/3/movie/900?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&append_to_response=videos'
-    //   setError();
-    //     try {
-    //       const response = await fetch(url);
-    //       const video = await response.json();
-    //       setVideo(video);
-    //           console.log('VID.LENGTH AFTER COND', video)
-
-    //     } catch(error) {
-    //       setError(error.message);
-    //     }
-    // } else {
-    //   const randomNum = Math.floor(Math.random() * (1000 - 2 + 1)) + 2;
-    //     console.log('randomNum', randomNum)
-    //    url = `https://api.themoviedb.org/3/movie/${randomNum}?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&append_to_response=videos`;
-    //     setError();
-    //     try {
-    //       const response = await fetch(url);
-    //       const video = await response.json();
-    //       setVideo(video);
-    //     } catch(error) {
-    //       setError(error.message);
-    //     }
-    // } 
-  
-    // console.log("2: PAGE COUNT", pageCount)
-    // console.log('3: LOCATION', location)
   
   useEffect(() => {
     getVideo();
@@ -138,12 +70,6 @@ let url;
     getGenre();
   }, [pageCount, location]) 
 
-
-  // useEffect(() => {
-  //   console.log('useEffect===>', video)
-  // }, [video])
-
- 
   const previousChangePage = () => {
      setPageCount(pageCount - 1);
      getMovies();

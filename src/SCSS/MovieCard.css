@@ -14,8 +14,24 @@
 .poster-img {
   height: 100%;
   width: 100%;
+}
+
+.watchlist-add {
+  height: 10%;
+  width: 15%;
+  border:2px solid #c58e36;
+  border-radius: 50%;
+  background-color: #EBAB47;
+  box-shadow: 3px 3px 5px #000;
+  transform: translate(0px, -80px);
+  margin-left: 10px;
+  margin-bottom: 10px;
   cursor: pointer;
+  font-size: 2em;
+  text-align: center;
 }
 
 
-
+.watchlist-add:hover {
+  color: red;
+}

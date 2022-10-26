@@ -2,10 +2,8 @@ import { Link, BrowserRouter } from 'react-router-dom';
 import '../SCSS/MovieCard.css'
 import MovieDetails from './MovieDetails';
 
-const MovieCard  = ( {img, id, getSingleMovieDetails} ) => {
-  const addToWatchList = () => {
-    console.log('can you click watchlist button?')
-  }
+const MovieCard  = ( {img, id, getSingleMovieDetails, addToWatchList} ) => {
+
   //click should take viewer to a single movie's details
   //need a router link to it
   //brings you to that page, activates that component, so that component is rendered

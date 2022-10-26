@@ -91,13 +91,17 @@ let url;
     setSingleView(singleMovie);
   }
 
+  const addToWatchList = () => {
+    console.log('can you click watchlist button?')
+  }
+
   return (
     <div className='app selector'>
       <Nav genres={genres}/>
       {location.pathname === '/' && movies.length > 0 && <Banner video={video} />}
       <div className='divider-div'></div>
       <Routes>
-        <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} />} />
+        <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} />} />
         <Route path='/moviedetails' element={<MovieDetails singleView={singleView} />}/>
       </Routes>
         {location.pathname === '/' && <div className='buttons-div'>

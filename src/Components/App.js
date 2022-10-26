@@ -15,6 +15,7 @@ const App = () => {
   const [singleView, setSingleView] = useState({});
   const [genres, setGenres] = useState([]);
   const [video, setVideo] = useState([]);
+  const [watchList, setWatchList] = useState([]);
 
   // for search functionality test this url: 
   // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
@@ -91,8 +92,24 @@ let url;
     setSingleView(singleMovie);
   }
 
-  const addToWatchList = () => {
-    console.log('can you click watchlist button?')
+  const addToWatchList = (id) => {
+
+    // CONFIRM CONDITIONAL IS WORKING - CAN CLICK SAME MOVIE AND FUNCTIONAL STILL ADDS THE MOVE TO THE WATCHLIST ARRAY REGARDLESS OF IT ALREADY BEING IN THERE. 
+    if (!watchList.includes(id)) {
+      // conditional does resolve to TRUE - but every time
+      const addMovie = movies.filter((movie) => {
+        console.log(movie.id, 'SPACE', id)
+        return movie.id === id;
+      })
+      console.log('addMovie filter----', addMovie)
+      // addMovie returns an array of elements that match conditional(one movie whose id matches) - since addMovie is an array is this an issue matching ids?
+      setWatchList([...watchList, addMovie]);
+    }
+    else {
+      console.log('DO NOT ADD DUPLICATE')
+    }
+
+    console.log('watchList STATE:', watchList)
   }
 
   return (

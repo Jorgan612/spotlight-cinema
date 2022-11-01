@@ -8,6 +8,10 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 import WatchList from './WatchList';
 
+
+//need to add local storage to to watch list
+//need to remove the plus and switch to remove it
+
 const App = () => {
   const location = useLocation();
   const [movies, setMovies] = useState([]);

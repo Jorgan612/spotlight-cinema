@@ -13,10 +13,14 @@ const WatchList = ({watchList, getSingleMovieDetails}) => {
   })
   return (
     <div className='watchlist-titles-div'>
-      <h1>Watchlist</h1>
-      {watchListTitles}
-      <div>
-        <Link to='/'><button>Back</button></Link>
+      <h1 className='selector'>Watchlist</h1>
+      <div className='titles-container'>
+        {watchListTitles}
+      </div>
+      <div className='back-btn-div'>
+        <Link to='/'>
+          <button className='selector'>Back</button>
+        </Link>
       </div>
     </div>
   )

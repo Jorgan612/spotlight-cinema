@@ -6,6 +6,7 @@ import MoviesContainer from './MoviesContainer';
 import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
+import WatchList from './WatchList';
 
 const App = () => {
   const location = useLocation();
@@ -97,13 +98,14 @@ let url;
     // CONFIRM CONDITIONAL IS WORKING - CAN CLICK SAME MOVIE AND FUNCTIONAL STILL ADDS THE MOVE TO THE WATCHLIST ARRAY REGARDLESS OF IT ALREADY BEING IN THERE. 
     if (!watchList.includes(id)) {
       // conditional does resolve to TRUE - but every time
-      const addMovie = movies.filter((movie) => {
+      const addMovie = movies.find((movie) => {
         console.log(movie.id, 'SPACE', id)
         return movie.id === id;
       })
       console.log('addMovie filter----', addMovie)
       // addMovie returns an array of elements that match conditional(one movie whose id matches) - since addMovie is an array is this an issue matching ids?
       setWatchList([...watchList, addMovie]);
+      console.log('WATCHLIST', watchList)
     }
     else {
       console.log('DO NOT ADD DUPLICATE')
@@ -119,7 +121,8 @@ let url;
       <div className='divider-div'></div>
       <Routes>
         <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} />} />
-        <Route path='/moviedetails' element={<MovieDetails singleView={singleView} />}/>
+        <Route path='/moviedetails' element={<MovieDetails singleView={singleView} />} />
+        <Route path='/watchlist' element={<WatchList watchList={watchList}/>} />
       </Routes>
         {location.pathname === '/' && <div className='buttons-div'>
         {pageCount > 1 && <button className='btn selector' onClick={previousChangePage}>Previous</button>}

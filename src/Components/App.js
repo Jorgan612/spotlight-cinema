@@ -11,6 +11,7 @@ import WatchList from './WatchList';
 
 //need to add local storage to to watch list
 //need to remove the plus and switch to remove it
+//remove dupes
 
 const App = () => {
   const location = useLocation();
@@ -97,26 +98,52 @@ let url;
     setSingleView(singleMovie);
   }
 
+// https://github.com/delilahrois/hang-in-there/blob/main/src/main.js
+//function saveCreatedPoster(event) {
+//   event.preventDefault();
+//   if (!savedPosters.includes(currentPoster)) {
+//     savedPosters.push(currentPoster);
+//   }
+// };
+
   const addToWatchList = (id) => {
+//remove dupes
+//implement localstorage
+    // if (!watchList.includes(id)) {
 
-    // CONFIRM CONDITIONAL IS WORKING - CAN CLICK SAME MOVIE AND FUNCTIONAL STILL ADDS THE MOVE TO THE WATCHLIST ARRAY REGARDLESS OF IT ALREADY BEING IN THERE. 
-    if (!watchList.includes(id)) {
-      // conditional does resolve to TRUE - but every time
-      const addMovie = movies.find((movie) => {
-        console.log(movie.id, 'SPACE', id)
-        return movie.id === id;
+    //find is giving us undefined for the second clicked movie in the array
+    //filter is on the watchlist page is not showing the card correctly
+      const addMovie = movies.filter((movie) => {
+        console.log('WL===>', watchList)
+        if(movie.id === id && !watchList.includes(movie)) {
+          console.log('are you ever getting here??????')
+          return movie
+        }
       })
-      console.log('addMovie filter----', addMovie)
-      // addMovie returns an array of elements that match conditional(one movie whose id matches) - since addMovie is an array is this an issue matching ids?
       setWatchList([...watchList, addMovie]);
-      console.log('WATCHLIST', watchList)
-    }
-    else {
-      console.log('DO NOT ADD DUPLICATE')
-    }
-
-    console.log('watchList STATE:', watchList)
-  }
+    // } 
+  //   else {
+  //   const noDupesList = watchList.reduce((acc, title) => {
+  //     console.log('watchLISTLLLLLLLL->', watchList)
+  //     console.log('title', title)
+  //     if(!title) {
+  //       acc.push(title)
+  //     } 
+  //     console.log('ACC', acc)
+  //     return acc
+  //   }, [])
+  //   setWatchList([...watchList, noDupesList]);
+  // }
+}
+  
+// const diningType = restaurants.reduce((acc, rest) => {
+//     if(!acc[rest.type]) {
+//       acc[rest.type] = []
+//     }
+//     acc[rest.type].push(rest.name)
+//     return acc
+//   }, {})
+//   return diningType
 
   return (
     <div className='app selector'>

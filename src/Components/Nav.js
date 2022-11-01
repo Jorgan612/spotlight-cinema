@@ -3,11 +3,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Nav = ({genres}) => {
-
   const dropdownList = genres.map((genre) => {
       return <option key={genre.id} id={genre.id} value={genre.name}>{genre.name}</option>
     })
-  
   const [searchPhrase, setSearchPhrase] = useState('')
   return (
     <nav className='nav'>

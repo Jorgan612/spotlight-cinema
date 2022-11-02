@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 import WatchList from './WatchList';
+// import { watch } from 'fs';
 
 
 //need to add local storage to to watch list
@@ -98,52 +99,15 @@ let url;
     setSingleView(singleMovie);
   }
 
-// https://github.com/delilahrois/hang-in-there/blob/main/src/main.js
-//function saveCreatedPoster(event) {
-//   event.preventDefault();
-//   if (!savedPosters.includes(currentPoster)) {
-//     savedPosters.push(currentPoster);
-//   }
-// };
-
   const addToWatchList = (id) => {
-//remove dupes
-//implement localstorage
-    // if (!watchList.includes(id)) {
-
-    //find is giving us undefined for the second clicked movie in the array
-    //filter is on the watchlist page is not showing the card correctly
-      const addMovie = movies.filter((movie) => {
-        console.log('WL===>', watchList)
-        if(movie.id === id && !watchList.includes(movie)) {
-          console.log('are you ever getting here??????')
-          return movie
+      const addMovie = movies.find((movie) => {
+        if(movie.id === id) {
+          watchList.push(movie)
         }
       })
-      setWatchList([...watchList, addMovie]);
-    // } 
-  //   else {
-  //   const noDupesList = watchList.reduce((acc, title) => {
-  //     console.log('watchLISTLLLLLLLL->', watchList)
-  //     console.log('title', title)
-  //     if(!title) {
-  //       acc.push(title)
-  //     } 
-  //     console.log('ACC', acc)
-  //     return acc
-  //   }, [])
-  //   setWatchList([...watchList, noDupesList]);
-  // }
-}
-  
-// const diningType = restaurants.reduce((acc, rest) => {
-//     if(!acc[rest.type]) {
-//       acc[rest.type] = []
-//     }
-//     acc[rest.type].push(rest.name)
-//     return acc
-//   }, {})
-//   return diningType
+      let uniqueWatchList = [...new Set(watchList)];
+      setWatchList(uniqueWatchList);
+    }
 
   return (
     <div className='app selector'>

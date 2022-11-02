@@ -1,12 +1,11 @@
-import '../SCSS/Nav.css'
-import {useState} from 'react';
+import '../SCSS/Nav.css';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Nav = ({genres}) => {
   const dropdownList = genres.map((genre) => {
       return <option key={genre.id} id={genre.id} value={genre.name}>{genre.name}</option>
     })
-  
-
   const [searchPhrase, setSearchPhrase] = useState('')
   return (
     <nav className='nav'>
@@ -18,10 +17,15 @@ const Nav = ({genres}) => {
         value={searchPhrase}
         onChange={event => setSearchPhrase(event.target.value)}
       />
+      <div className='watchlist-genre-container'>
+        <Link to='/watchlist'>
+          <button className='selector watchlist-btn'>Watchlist</button>
+        </Link>
         <select className='dropdown selector'>
           <option value="genres">All Genres</option>
           {dropdownList}
         </select>
+      </div>
     </nav>
   )
 }

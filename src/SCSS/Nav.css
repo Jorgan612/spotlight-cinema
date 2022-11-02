@@ -1,9 +1,9 @@
 .nav {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background-color: #6B6B6B;
-  height: 10vh;
+  height: 20vh;
 }
 
 .app-title {
@@ -24,15 +24,29 @@
   outline:auto #EBAB47;
 }
 
+.watchlist-genre-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .dropdown {
   background-color: #6B6B6B;
   border: none;
   color: #EBAB47;
   font-weight: bolder;
   font-size: 1.5em;
+  text-align: center;
 }
 
 .dropdown:focus {
-  /* border: 2px solid #dedbdb; */
   outline:auto #EBAB47;
+}
+
+.dropdown:hover {
+  color: #fcc771;
+}
+
+.watchlist-btn {
+  background-color: #6B6B6B;
 }

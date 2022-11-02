@@ -11,7 +11,7 @@ import WatchList from './WatchList';
 
 
 //need to add local storage to to watch list
-//need to remove the plus and switch to remove it
+//need to remove the plus and switch to remove it ==> figure out conditional to upate the button functionality to remove it, and make sure the plus icon is gone 
 //remove dupes
 
 const App = () => {
@@ -22,7 +22,11 @@ const App = () => {
   const [singleView, setSingleView] = useState({});
   const [genres, setGenres] = useState([]);
   const [video, setVideo] = useState([]);
-  const [watchList, setWatchList] = useState([]);
+  const [watchList, setWatchList] = useState(() => {
+    const savedTitles = localStorage.getItem('watchList');
+    const initialValue = JSON.parse(JSON.stringify(savedTitles));
+    return initialValue || '';
+  });
 
   // for search functionality test this url: 
   // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
@@ -76,6 +80,7 @@ let url;
     getVideo();
     getMovies();
     getGenre();
+    localStorage.setItem('watchList', JSON.stringify(watchList));
   }, [pageCount, location]) 
 
   const previousChangePage = () => {
@@ -98,7 +103,6 @@ let url;
     })
     setSingleView(singleMovie);
   }
-
   const addToWatchList = (id) => {
       const addMovie = movies.find((movie) => {
         if(movie.id === id) {

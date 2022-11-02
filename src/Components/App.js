@@ -22,11 +22,12 @@ const App = () => {
   const [singleView, setSingleView] = useState({});
   const [genres, setGenres] = useState([]);
   const [video, setVideo] = useState([]);
-  const [watchList, setWatchList] = useState(() => {
-    const savedTitles = localStorage.getItem('watchList');
-    const initialValue = JSON.parse(JSON.stringify(savedTitles));
-    return initialValue || '';
-  });
+  // const [watchList, setWatchList] = useState(() => {
+  //   const savedTitles = localStorage.getItem('watchList');
+  //   const initialValue = JSON.parse(JSON.stringify(savedTitles));
+  //   return initialValue || '';
+  // });
+  const [watchList, setWatchList] = useState([])
 
   // for search functionality test this url: 
   // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
@@ -80,7 +81,7 @@ let url;
     getVideo();
     getMovies();
     getGenre();
-    localStorage.setItem('watchList', JSON.stringify(watchList));
+    // localStorage.setItem('watchList', JSON.stringify(watchList));
   }, [pageCount, location]) 
 
   const previousChangePage = () => {

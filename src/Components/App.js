@@ -8,10 +8,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 import WatchList from './WatchList';
 
-
-//need to add local storage to to watch list
 //need to remove the plus and switch to remove it ==> figure out conditional to upate the button functionality to remove it, and make sure the plus icon is gone 
-//remove dupes
 
 const App = () => {
   const location = useLocation();
@@ -24,28 +21,8 @@ const App = () => {
   const [watchList, setWatchList] = useState(() => {
     const savedTitles = JSON.parse(localStorage.getItem('watchList'));
     const initialValue = savedTitles || [];
-
-    console.log('savedTitles--- in localstorage---', typeof savedTitles)
-    console.log('INITIAL VALUE--- in localstorage---', typeof initialValue)
     return initialValue;
   });
-
-  
-
-
-
-  useEffect(() => {
-    
-    localStorage.setItem('watchList', JSON.stringify(watchList));
-    console.log('watchList-----???', watchList)
-  })
-
- 
-
-
-  // const [watchList, setWatchList] = useState([])
-
-
 
   // for search functionality test this url: 
   // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
@@ -99,14 +76,9 @@ let url;
     getVideo();
     getMovies();
     getGenre();
-    // localStorage.setItem('watchList', JSON.stringify(watchList));
+    localStorage.setItem('watchList', JSON.stringify(watchList));
   }, [pageCount, location]) 
 
-
-  // localStorage useEffect
-  // useEffect(() => {
-  //   localStorage.setItem('watchList', JSON.stringify(watchList));
-  // })
 
   const previousChangePage = () => {
      setPageCount(pageCount - 1);

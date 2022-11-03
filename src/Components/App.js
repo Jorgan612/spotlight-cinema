@@ -18,6 +18,7 @@ const App = () => {
   const [singleView, setSingleView] = useState({});
   const [genres, setGenres] = useState([]);
   const [video, setVideo] = useState([]);
+  const [onWatchList, setOnWatchList] = useState(false);
   const [watchList, setWatchList] = useState(() => {
     const savedTitles = JSON.parse(localStorage.getItem('watchList'));
     const initialValue = savedTitles || [];
@@ -100,6 +101,9 @@ let url;
     })
     setSingleView(singleMovie);
   }
+
+  
+
   const addToWatchList = (id) => {
       const addMovie = movies.find((movie) => {
         if(movie.id === id) {
@@ -108,7 +112,25 @@ let url;
       })
       let uniqueWatchList = [...new Set(watchList)];
       setWatchList(uniqueWatchList);
+      checkWatchList();
     }
+
+    const checkWatchList = () => {
+      const isOnWatchList = watchList.forEach((title) => {
+        if (watchList.includes(title)) {
+          setOnWatchList(true);
+        }
+      })
+      console.log('onWatchList state~~~~~~', onWatchList)
+    }
+    
+
+    /*
+    Left off troubleshooting checkWatchList - trying to verify boolean to determine styling for add / remove from watchlist buttons 
+    When add button is clicked it changes button styling for ALL movie posters on main page AND breaks localStorage 
+    Add button returns upon page refresh
+    Research solution!
+    */
 
   return (
     <div className='app selector'>
@@ -116,7 +138,7 @@ let url;
       {location.pathname === '/' && movies.length > 0 && <Banner video={video} />}
       <div className='divider-div'></div>
       <Routes>
-        <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} />} />
+        <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} isOnWatchList={onWatchList} addToWatchList={addToWatchList} />} />
         <Route path='/moviedetails' element={<MovieDetails singleView={singleView} />} />
         <Route path='/watchlist' element={<WatchList watchList={watchList}/>} />
       </Routes>

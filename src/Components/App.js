@@ -7,7 +7,6 @@ import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 import WatchList from './WatchList';
-// import { watch } from 'fs';
 
 
 //need to add local storage to to watch list
@@ -22,12 +21,31 @@ const App = () => {
   const [singleView, setSingleView] = useState({});
   const [genres, setGenres] = useState([]);
   const [video, setVideo] = useState([]);
-  // const [watchList, setWatchList] = useState(() => {
-  //   const savedTitles = localStorage.getItem('watchList');
-  //   const initialValue = JSON.parse(JSON.stringify(savedTitles));
-  //   return initialValue || '';
-  // });
-  const [watchList, setWatchList] = useState([])
+  const [watchList, setWatchList] = useState(() => {
+    const savedTitles = JSON.parse(localStorage.getItem('watchList'));
+    const initialValue = savedTitles || [];
+
+    console.log('savedTitles--- in localstorage---', typeof savedTitles)
+    console.log('INITIAL VALUE--- in localstorage---', typeof initialValue)
+    return initialValue;
+  });
+
+  
+
+
+
+  useEffect(() => {
+    
+    localStorage.setItem('watchList', JSON.stringify(watchList));
+    console.log('watchList-----???', watchList)
+  })
+
+ 
+
+
+  // const [watchList, setWatchList] = useState([])
+
+
 
   // for search functionality test this url: 
   // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
@@ -83,6 +101,12 @@ let url;
     getGenre();
     // localStorage.setItem('watchList', JSON.stringify(watchList));
   }, [pageCount, location]) 
+
+
+  // localStorage useEffect
+  // useEffect(() => {
+  //   localStorage.setItem('watchList', JSON.stringify(watchList));
+  // })
 
   const previousChangePage = () => {
      setPageCount(pageCount - 1);

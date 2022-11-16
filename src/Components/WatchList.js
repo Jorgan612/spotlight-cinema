@@ -9,14 +9,15 @@ const WatchList = ({watchList, getSingleMovieDetails}) => {
         key={index}
         id={movie.id}
         getSingleMovieDetails={getSingleMovieDetails}
+        isOnWatchList={movie.isOnWatchList}
       />
   })
   return (
     <div className='watchlist-titles-div'>
       <h1 className='selector'>Watchlist</h1>
-      <div className='titles-container'>
-        {watchListTitles}
-      </div>
+      {watchList.length > 0 ? <div className='titles-container'>
+        { watchListTitles }
+      </div> : <p>You have no movies saved to your watchlist at this time.</p>}
       <div className='back-btn-div'>
         <Link to='/'>
           <button className='selector'>Back</button>

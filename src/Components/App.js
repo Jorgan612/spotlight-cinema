@@ -1,7 +1,7 @@
 import React from 'react';
 import '../SCSS/App.css';
 import Nav from './Nav';
-import Banner from './Banner'
+import Banner from './Banner';
 import MoviesContainer from './MoviesContainer';
 import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
@@ -30,7 +30,7 @@ const App = () => {
 
 
   const getMovies = async () => {
-    const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&page=${pageCount}`
+    const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&page=${pageCount}`;
     setError('');
 
     try {
@@ -43,8 +43,8 @@ const App = () => {
   }
 
   const getGenre = async () => {
-    const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US`
-    setError('')
+    const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US`;
+    setError('');
 
     try {
       const response = await fetch(url);
@@ -107,22 +107,26 @@ let url;
   const addToWatchList = (id) => {
       const addMovie = movies.find((movie) => {
         if(movie.id === id) {
-          watchList.push(movie)
+          movie.isOnWatchList = true;
+          watchList.push(movie);
         }
+        console.log('isOnWatchList a property now??', watchList)
       })
       let uniqueWatchList = [...new Set(watchList)];
       setWatchList(uniqueWatchList);
-      checkWatchList();
+      // checkWatchList(id);
     }
 
-    const checkWatchList = () => {
-      const isOnWatchList = watchList.forEach((title) => {
-        if (watchList.includes(title)) {
-          setOnWatchList(true);
-        }
-      })
-      console.log('onWatchList state~~~~~~', onWatchList)
-    }
+    // const checkWatchList = (id) => {
+    //   const isOnWatchList = watchList.forEach((title) => {
+        
+    //     if (watchList.includes(title)) {
+    //       // console.log('TITLE IN FOREACH', title)
+    //       setOnWatchList(true);
+    //     }
+    //   })
+      // console.log('onWatchList state~~~~~~', onWatchList)
+    // }
     
 
     /*

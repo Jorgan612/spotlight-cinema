@@ -1,7 +1,7 @@
-import '../SCSS/MoviesContainer.css'
+import '../SCSS/MoviesContainer.css';
 import MovieCard from './MovieCard';
 
-const MoviesContainer = ({movies, getSingleMovieDetails, addToWatchList, isOnWatchList}) => {
+const MoviesContainer = ({movies, getSingleMovieDetails, addToWatchList}) => {
   const movieList = movies.map((movie, index) => {
 
     return <MovieCard 
@@ -10,7 +10,7 @@ const MoviesContainer = ({movies, getSingleMovieDetails, addToWatchList, isOnWat
       id={movie.id}
       getSingleMovieDetails={getSingleMovieDetails}
       addToWatchList={addToWatchList}
-      isOnWatchList={isOnWatchList}
+      isOnWatchList={movie.isOnWatchList}
     />
   })
 

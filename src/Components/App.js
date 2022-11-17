@@ -18,7 +18,7 @@ const App = () => {
   const [singleView, setSingleView] = useState({});
   const [genres, setGenres] = useState([]);
   const [video, setVideo] = useState([]);
-  const [onWatchList, setOnWatchList] = useState(false);
+  // const [onWatchList, setOnWatchList] = useState(false);
   const [watchList, setWatchList] = useState(() => {
     const savedTitles = JSON.parse(localStorage.getItem('watchList'));
     const initialValue = savedTitles || [];
@@ -29,6 +29,9 @@ const App = () => {
   // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
 
 
+
+  // EXPLORE WHETHER OR NOT CONDITIONS NEED TO BE ADDED TO GETMOVIES TO DETERMINE STYLING OF WATCHLIST BUTTON ON RERENDER
+  //  
   const getMovies = async () => {
     const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&page=${pageCount}`;
     setError('');
@@ -107,26 +110,25 @@ let url;
   const addToWatchList = (id) => {
       const addMovie = movies.find((movie) => {
         if(movie.id === id) {
-          // movie.isOnWatchList = true;
           watchList.push(movie);
         }
-        // console.log('isOnWatchList a property now??', watchList)
       })
       let uniqueWatchList = [...new Set(watchList)];
       setWatchList(uniqueWatchList);
       // checkWatchList(id);
     }
 
-    // const checkWatchList = (id) => {
-    //   const isOnWatchList = watchList.forEach((title) => {
-        
-    //     if (watchList.includes(title)) {
-    //       // console.log('TITLE IN FOREACH', title)
-    //       setOnWatchList(true);
-    //     }
-    //   })
-      // console.log('onWatchList state~~~~~~', onWatchList)
-    // }
+    const checkWatchList = () => {
+      const isOnWatchList = movies.forEach((title) => {
+        console.log('forEach title-------', title)
+        if (watchList.includes(title)) {
+          console.log('IF CONDITION MET_~~_')
+        } else {
+          console.log('CHECKLIST ELSE CONDITION MET ++++++')
+        }
+      })
+      console.log('CHECKWATCH LIST', watchList);
+    }
     
 
     /*
@@ -140,9 +142,9 @@ let url;
       {location.pathname === '/' && movies.length > 0 && <Banner video={video} />}
       <div className='divider-div'></div>
       <Routes>
-        <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} isOnWatchList={onWatchList} addToWatchList={addToWatchList} watchList={watchList} />} />
+        <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} />} />
         <Route path='/moviedetails' element={<MovieDetails singleView={singleView} />} />
-        <Route path='/watchlist' element={<WatchList watchList={watchList}/>} />
+        <Route path='/watchlist' element={<WatchList watchList={watchList} checkWatchList={checkWatchList}/>} />
       </Routes>
         {location.pathname === '/' && <div className='buttons-div'>
         {pageCount > 1 && <button className='btn selector' onClick={previousChangePage}>Previous</button>}

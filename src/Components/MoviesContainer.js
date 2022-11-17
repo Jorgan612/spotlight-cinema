@@ -4,9 +4,9 @@ import MovieCard from './MovieCard';
 const MoviesContainer = ({movies, getSingleMovieDetails, addToWatchList, watchList}) => {
   const movieList = movies.map((movie, index) => {
     // still having issue with duplicates in regards to routing to a new view 
+    // and styling when going back to main page
     
         if (watchList.includes(movie)) {
-          console.log('is IF working?')
           return <MovieCard 
             img={movie.poster_path}
             key={index}
@@ -16,7 +16,6 @@ const MoviesContainer = ({movies, getSingleMovieDetails, addToWatchList, watchLi
             isOnWatchList={true}
           /> 
         } else {
-          console.log('is ELSE working?')
           return <MovieCard 
             img={movie.poster_path}
             key={index}

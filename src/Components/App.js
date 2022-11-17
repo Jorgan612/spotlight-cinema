@@ -107,10 +107,10 @@ let url;
   const addToWatchList = (id) => {
       const addMovie = movies.find((movie) => {
         if(movie.id === id) {
-          movie.isOnWatchList = true;
+          // movie.isOnWatchList = true;
           watchList.push(movie);
         }
-        console.log('isOnWatchList a property now??', watchList)
+        // console.log('isOnWatchList a property now??', watchList)
       })
       let uniqueWatchList = [...new Set(watchList)];
       setWatchList(uniqueWatchList);
@@ -130,10 +130,8 @@ let url;
     
 
     /*
-    Left off troubleshooting checkWatchList - trying to verify boolean to determine styling for add / remove from watchlist buttons 
-    When add button is clicked it changes button styling for ALL movie posters on main page AND breaks localStorage 
-    Add button returns upon page refresh
-    Research solution!
+    Movies in watchlist are still being duplicated AFTER fixing remove watch list button styling (to only show on button clicked and not ALL watchlist buttons)
+    watchlist button styling is not reflecting correctly on main page on rerender
     */
 
   return (
@@ -142,7 +140,7 @@ let url;
       {location.pathname === '/' && movies.length > 0 && <Banner video={video} />}
       <div className='divider-div'></div>
       <Routes>
-        <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} isOnWatchList={onWatchList} addToWatchList={addToWatchList} />} />
+        <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} isOnWatchList={onWatchList} addToWatchList={addToWatchList} watchList={watchList} />} />
         <Route path='/moviedetails' element={<MovieDetails singleView={singleView} />} />
         <Route path='/watchlist' element={<WatchList watchList={watchList}/>} />
       </Routes>

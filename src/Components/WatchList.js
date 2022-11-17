@@ -9,7 +9,7 @@ const WatchList = ({watchList, getSingleMovieDetails}) => {
         key={index}
         id={movie.id}
         getSingleMovieDetails={getSingleMovieDetails}
-        isOnWatchList={movie.isOnWatchList}
+        isOnWatchList={true}
       />
   })
   return (

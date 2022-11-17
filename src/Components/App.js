@@ -39,6 +39,7 @@ const App = () => {
     try {
       const response = await fetch(url);
       const movies = await response.json();
+      // condition might need to go here BEFORE setMovies sets state to determine watchlist button styling 
       setMovies(movies.results);
     } catch(error) {
       setError(error.message);
@@ -81,6 +82,7 @@ let url;
     getMovies();
     getGenre();
     localStorage.setItem('watchList', JSON.stringify(watchList));
+    // review having more than one useEffect - how would having more than one be helpful? would it prevent api calls overriding styling changes?
   }, [pageCount, location]) 
 
 

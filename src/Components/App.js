@@ -35,7 +35,6 @@ const App = () => {
   const getMovies = async () => {
     const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&page=${pageCount}`;
     setError('');
-
     try {
       const response = await fetch(url);
       const movies = await response.json();
@@ -49,7 +48,6 @@ const App = () => {
   const getGenre = async () => {
     const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US`;
     setError('');
-
     try {
       const response = await fetch(url);
       const genres = await response.json();
@@ -140,7 +138,7 @@ let url;
 
   return (
     <div className='app selector'>
-      <Nav genres={genres}/>
+      <Nav genres={genres} setError={setError}/>
       {location.pathname === '/' && movies.length > 0 && <Banner video={video} />}
       <div className='divider-div'></div>
       <Routes>

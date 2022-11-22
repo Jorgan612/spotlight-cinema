@@ -5,26 +5,23 @@ const MoviesContainer = ({movies, getSingleMovieDetails, addToWatchList, watchLi
   const movieList = movies.map((movie, index) => {
     // still having issue with duplicates in regards to routing to a new view 
     // and styling when going back to main page
+
+    let isOnWatchList = false;
     
-        if (watchList.includes(movie)) {
-          return <MovieCard 
-            img={movie.poster_path}
-            key={index}
-            id={movie.id}
-            getSingleMovieDetails={getSingleMovieDetails}
-            addToWatchList={addToWatchList}
-            isOnWatchList={true}
-          /> 
-        } else {
-          return <MovieCard 
-            img={movie.poster_path}
-            key={index}
-            id={movie.id}
-            getSingleMovieDetails={getSingleMovieDetails}
-            addToWatchList={addToWatchList}
-            isOnWatchList={false}
-          />
-        }
+    watchList.forEach(watchListMovie => {
+      if (movie.id === watchListMovie.id) {
+        isOnWatchList = true;
+      }
+    });
+    
+    return <MovieCard 
+      img={movie.poster_path}
+      key={index}
+      id={movie.id}
+      getSingleMovieDetails={getSingleMovieDetails}
+      addToWatchList={addToWatchList}
+      isOnWatchList={isOnWatchList}
+    /> 
   })
 
   return (

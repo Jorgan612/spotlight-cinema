@@ -3,7 +3,7 @@ import '../SCSS/WatchList.css';
 import { Link } from 'react-router-dom';
 import WatchListCard from '../Components/WatchListCard';
 
-const WatchList = ({watchList, getSingleMovieDetails, checkWatchList}) => {
+const WatchList = ({ watchList, getSingleMovieDetails, removeFromWatchList }) => {
   const watchListTitles = watchList.map((movie, index) => {
      return <WatchListCard 
         img={movie.poster_path}
@@ -11,6 +11,7 @@ const WatchList = ({watchList, getSingleMovieDetails, checkWatchList}) => {
         id={movie.id}
         getSingleMovieDetails={getSingleMovieDetails}
         isOnWatchList={true}
+        removeFromWatchList={removeFromWatchList}
       />
   })
   return (
@@ -21,7 +22,7 @@ const WatchList = ({watchList, getSingleMovieDetails, checkWatchList}) => {
       </div> : <p>You have no movies saved to your watchlist at this time.</p>}
       <div className='back-btn-div'>
         <Link to='/'>
-          <button className='selector' onClick={checkWatchList}>Back</button>
+          <button className='selector'>Back</button>
         </Link>
       </div>
     </div>

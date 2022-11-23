@@ -3,8 +3,7 @@ import MovieCard from './MovieCard';
 
 const MoviesContainer = ({movies, getSingleMovieDetails, addToWatchList, watchList}) => {
   const movieList = movies.map((movie, index) => {
-    // still having issue with duplicates in regards to routing to a new view 
-    // and styling when going back to main page
+    // still having issue with duplicates 
 
     let isOnWatchList = false;
     

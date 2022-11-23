@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
-import '../SCSS/MovieCard.css';
 
-const MovieCard  = ( {img, id, getSingleMovieDetails, addToWatchList, isOnWatchList} ) => {
- 
+const WatchListCard = ({img, id, getSingleMovieDetails, addToWatchList, isOnWatchList}) => {
   const addBtn = <button className={`watchlist-add btn`} onClick={() => addToWatchList(id)}>➕</button>
   const removeBtn = <button className={`watchlist-remove btn`} onClick={() => addToWatchList(id)}>✖️</button>
   return (
@@ -13,6 +11,7 @@ const MovieCard  = ( {img, id, getSingleMovieDetails, addToWatchList, isOnWatchL
       {isOnWatchList ? removeBtn : addBtn}
     </div>
   )
+
 }
 
-export default MovieCard;
+export default WatchListCard;

@@ -1,7 +1,7 @@
 import '../SCSS/MoviesContainer.css';
 import MovieCard from './MovieCard';
 
-const MoviesContainer = ({movies, getSingleMovieDetails, addToWatchList, watchList}) => {
+const MoviesContainer = ({ movies, getSingleMovieDetails, addToWatchList, watchList, removeFromWatchList }) => {
   const movieList = movies.map((movie, index) => {
     // still having issue with duplicates 
 
@@ -20,6 +20,7 @@ const MoviesContainer = ({movies, getSingleMovieDetails, addToWatchList, watchLi
       getSingleMovieDetails={getSingleMovieDetails}
       addToWatchList={addToWatchList}
       isOnWatchList={isOnWatchList}
+      removeFromWatchList={removeFromWatchList}
     /> 
   })
 

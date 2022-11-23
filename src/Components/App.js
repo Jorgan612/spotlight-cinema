@@ -139,7 +139,7 @@ let url;
       {location.pathname === '/' && movies.length > 0 && <Banner video={video} />}
       <div className='divider-div'></div>
       <Routes>
-        <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} />} />
+        <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} />} />
         <Route path='/moviedetails' element={<MovieDetails singleView={singleView} />} />
         <Route path='/watchlist' element={<WatchList watchList={watchList} removeFromWatchList={removeFromWatchList}/>} />
       </Routes>

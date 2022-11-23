@@ -11,7 +11,9 @@ import MoviesContainer from './MoviesContainer';
 
 const Nav = ({ genres, setError }) => {
 const [searchPhrase, setSearchPhrase] = useState('')
+//Below is the specific genres movies after being filtered out if this ever works
 const [specificGenre, setSpecificGenre] = useState([])
+console.log("=======>[specificGenre]", specificGenre)
 const [genreId, setGenreId] = useState(0)
 
   const showGenreMovies = async (id) => {
@@ -26,18 +28,20 @@ const [genreId, setGenreId] = useState(0)
     catch(error) {
       setError(error.message);
     }
-    console.log("specificGenre", specificGenre)
   }
 
   useEffect(() => {
     showGenreMovies(genreId);
-    console.log("NAV USE EFFECT WORKING ???")
   }, [genreId]);
 
+const dummmyFunc = (id) => {
+  console.log("ID------>FROM DUMMMY", id)
+}
 
   const dropdownList = genres.map((genre) => {
-      // console.log("RETURN value =======>", genre)
-      return <option onChange={event => {setGenreId(event.target.value)}} key={genre.id} id={genre.id} value={genre.id}>{genre.name}</option>
+    console.log("genre.id ===>", genre.id)
+      // return <option onClick={event => {setGenreId(event.target.value)}} key={genre.id} id={genre.id} value={genre.id}>{genre.name}</option>
+      return <option onClick={() => {dummmyFunc(genre.id)}} key={genre.id} id={genre.id} value={genre.id}>{genre.name}</option>
     })
 
   return (

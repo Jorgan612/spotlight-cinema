@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import '../SCSS/MovieCard.css';
 
-const MovieCard  = ( {img, id, getSingleMovieDetails, addToWatchList, isOnWatchList} ) => {
+const MovieCard  = ( { img, id, getSingleMovieDetails, addToWatchList, isOnWatchList, removeFromWatchList } ) => {
  
   const addBtn = <button className={`watchlist-add btn`} onClick={() => addToWatchList(id)}>➕</button>
-  const removeBtn = <button className={`watchlist-remove btn`} onClick={() => addToWatchList(id)}>✖️</button>
+  const removeBtn = <button className={`watchlist-remove btn`} onClick={() => removeFromWatchList(id)}>✖️</button>
   return (
     <div className='movie-card banner-card' onClick={() => getSingleMovieDetails(id)}>
       <Link to='/moviedetails'>

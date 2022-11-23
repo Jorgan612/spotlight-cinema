@@ -108,7 +108,6 @@ let url;
   }
 
   
-
   const addToWatchList = (id) => {
       const addMovie = movies.find((movie) => {
         if(movie.id === id) {
@@ -117,21 +116,17 @@ let url;
       })
       let uniqueWatchList = [...new Set(watchList)];
       setWatchList(uniqueWatchList);
-      // checkWatchList(id);
     }
 
-    const checkWatchList = () => {
-      const isOnWatchList = movies.forEach((title) => {
-        console.log('forEach title-------', title)
-        if (watchList.includes(title)) {
-          console.log('IF CONDITION MET_~~_')
-        } else {
-          console.log('CHECKLIST ELSE CONDITION MET ++++++')
-        }
+    const removeFromWatchList = (id) => {
+      console.log("REMOVED ID=====>", id)
+      const filteredMovies = watchList.filter((movieTitle) => {
+        return id !== movieTitle.id
       })
-      console.log('CHECKWATCH LIST', watchList);
+      setWatchList(filteredMovies);
     }
-    
+
+   
 
     /*
     Movies in watchlist are still being duplicated AFTER fixing remove watch list button styling (to only show on button clicked and not ALL watchlist buttons)
@@ -144,9 +139,9 @@ let url;
       {location.pathname === '/' && movies.length > 0 && <Banner video={video} />}
       <div className='divider-div'></div>
       <Routes>
-        <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} />} />
+        <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} />} />
         <Route path='/moviedetails' element={<MovieDetails singleView={singleView} />} />
-        <Route path='/watchlist' element={<WatchList watchList={watchList} checkWatchList={checkWatchList}/>} />
+        <Route path='/watchlist' element={<WatchList watchList={watchList} removeFromWatchList={removeFromWatchList}/>} />
       </Routes>
         {location.pathname === '/' && <div className='buttons-div'>
         {pageCount > 1 && <button className='btn selector' onClick={previousChangePage}>Previous</button>}

@@ -1,10 +1,9 @@
 import '../SCSS/MoviesContainer.css';
 import MovieCard from './MovieCard';
 
-const MoviesContainer = ({movies, getSingleMovieDetails, addToWatchList, watchList}) => {
+const MoviesContainer = ({ movies, getSingleMovieDetails, addToWatchList, watchList, removeFromWatchList }) => {
   const movieList = movies.map((movie, index) => {
-    // still having issue with duplicates in regards to routing to a new view 
-    // and styling when going back to main page
+    // still having issue with duplicates 
 
     let isOnWatchList = false;
     
@@ -21,6 +20,7 @@ const MoviesContainer = ({movies, getSingleMovieDetails, addToWatchList, watchLi
       getSingleMovieDetails={getSingleMovieDetails}
       addToWatchList={addToWatchList}
       isOnWatchList={isOnWatchList}
+      removeFromWatchList={removeFromWatchList}
     /> 
   })
 

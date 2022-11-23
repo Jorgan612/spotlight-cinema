@@ -29,6 +29,6 @@ const MovieDetails = ({ singleView }) => {
       </footer>
     </div>
   )
-}
+};
 
 export default MovieDetails;

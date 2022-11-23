@@ -1,4 +1,3 @@
-// import MovieCard from "./MovieCard";
 import '../SCSS/WatchList.css';
 import { Link } from 'react-router-dom';
 import WatchListCard from '../Components/WatchListCard';
@@ -13,7 +12,7 @@ const WatchList = ({ watchList, getSingleMovieDetails, removeFromWatchList }) =>
         isOnWatchList={true}
         removeFromWatchList={removeFromWatchList}
       />
-  })
+  });
   return (
     <div className='watchlist-titles-div'>
       <h1 className='selector'>Watchlist</h1>
@@ -27,6 +26,6 @@ const WatchList = ({ watchList, getSingleMovieDetails, removeFromWatchList }) =>
       </div>
     </div>
   )
-}
+};
 
 export default WatchList;

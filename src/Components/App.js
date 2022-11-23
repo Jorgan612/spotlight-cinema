@@ -8,8 +8,6 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 import WatchList from './WatchList';
 
-//need to remove the plus and switch to remove it ==> figure out conditional to upate the button functionality to remove it, and make sure the plus icon is gone 
-
 const App = () => {
   const location = useLocation();
   const [movies, setMovies] = useState([]);
@@ -18,7 +16,6 @@ const App = () => {
   const [singleView, setSingleView] = useState({});
   const [genres, setGenres] = useState([]);
   const [video, setVideo] = useState([]);
-  // const [onWatchList, setOnWatchList] = useState(false);
   const [watchList, setWatchList] = useState(() => {
     const savedTitles = JSON.parse(localStorage.getItem('watchList'));
     const initialValue = savedTitles || [];
@@ -28,17 +25,12 @@ const App = () => {
   // for search functionality test this url: 
   // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
 
-
-
-  // EXPLORE WHETHER OR NOT CONDITIONS NEED TO BE ADDED TO GETMOVIES TO DETERMINE STYLING OF WATCHLIST BUTTON ON RERENDER
-  //  
   const getMovies = async () => {
     const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&page=${pageCount}`;
     setError('');
     try {
       const response = await fetch(url);
       const movies = await response.json();
-      // condition might need to go here BEFORE setMovies sets state to determine watchlist button styling 
       setMovies(movies.results);
     } catch(error) {
       setError(error.message);
@@ -80,7 +72,6 @@ let url;
     getMovies();
     getGenre();
     localStorage.setItem('watchList', JSON.stringify(watchList));
-    // review having more than one useEffect - how would having more than one be helpful? would it prevent api calls overriding styling changes?
   }, [pageCount, location]) 
 
 
@@ -105,7 +96,6 @@ let url;
     setSingleView(singleMovie);
   }
 
-  
   const addToWatchList = (id) => {
       const addMovie = movies.find((movie) => {
         if(movie.id === id) {
@@ -123,13 +113,6 @@ let url;
       })
       setWatchList(filteredMovies);
     }
-
-   
-
-    /*
-    Movies in watchlist are still being duplicated AFTER fixing remove watch list button styling (to only show on button clicked and not ALL watchlist buttons)
-    watchlist button styling is not reflecting correctly on main page on rerender
-    */
 
   return (
     <div className='app selector'>

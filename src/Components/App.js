@@ -7,8 +7,7 @@ import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 import WatchList from './WatchList';
-
-//need to remove the plus and switch to remove it ==> figure out conditional to upate the button functionality to remove it, and make sure the plus icon is gone 
+import GenreContainer from './GenreContainer';
 
 const App = () => {
   const location = useLocation();
@@ -18,28 +17,27 @@ const App = () => {
   const [singleView, setSingleView] = useState({});
   const [genres, setGenres] = useState([]);
   const [video, setVideo] = useState([]);
-  // const [onWatchList, setOnWatchList] = useState(false);
+  const [specificGenre, setSpecificGenre] = useState([])
   const [watchList, setWatchList] = useState(() => {
     const savedTitles = JSON.parse(localStorage.getItem('watchList'));
     const initialValue = savedTitles || [];
     return initialValue;
   });
+//TO PICK UP WITH ON GENRES
+//NEED TO ADD A BACK BTN TO OUR GENRES PAGE TO GET HOME W/O Breaking it
+//Attempt to add to watchlist is not working from the genres 
+
+
 
   // for search functionality test this url: 
   // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
 
-
-
-  // EXPLORE WHETHER OR NOT CONDITIONS NEED TO BE ADDED TO GETMOVIES TO DETERMINE STYLING OF WATCHLIST BUTTON ON RERENDER
-  //  
   const getMovies = async () => {
     const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&page=${pageCount}`;
     setError('');
-
     try {
       const response = await fetch(url);
       const movies = await response.json();
-      // condition might need to go here BEFORE setMovies sets state to determine watchlist button styling 
       setMovies(movies.results);
     } catch(error) {
       setError(error.message);
@@ -49,7 +47,6 @@ const App = () => {
   const getGenre = async () => {
     const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US`;
     setError('');
-
     try {
       const response = await fetch(url);
       const genres = await response.json();
@@ -77,12 +74,31 @@ let url;
         }
     }
   
+    const showGenreMovies = async (event) => {
+    console.log('event ASYNC', event)
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&with_genres=${event}`; 
+    setError('');
+    try {
+      const response = await fetch(url);
+      const genres = await response.json();
+      console.log("BEFPRE setting stategenres===>", genres)
+      setSpecificGenre(genres.results);
+      console.log("After setting state genres.results  =>", genres.results)
+    } 
+    catch(error) {
+      setError(error.message);
+    }
+  }
+
+  useEffect(() => {
+    showGenreMovies();
+  }, []);
+
   useEffect(() => {
     getVideo();
     getMovies();
     getGenre();
     localStorage.setItem('watchList', JSON.stringify(watchList));
-    // review having more than one useEffect - how would having more than one be helpful? would it prevent api calls overriding styling changes?
   }, [pageCount, location]) 
 
 
@@ -107,7 +123,6 @@ let url;
     setSingleView(singleMovie);
   }
 
-  
   const addToWatchList = (id) => {
       const addMovie = movies.find((movie) => {
         if(movie.id === id) {
@@ -119,29 +134,22 @@ let url;
     }
 
     const removeFromWatchList = (id) => {
-      console.log("REMOVED ID=====>", id)
       const filteredMovies = watchList.filter((movieTitle) => {
         return id !== movieTitle.id
       })
       setWatchList(filteredMovies);
     }
 
-   
-
-    /*
-    Movies in watchlist are still being duplicated AFTER fixing remove watch list button styling (to only show on button clicked and not ALL watchlist buttons)
-    watchlist button styling is not reflecting correctly on main page on rerender
-    */
-
   return (
     <div className='app selector'>
-      <Nav genres={genres}/>
-      {location.pathname === '/' && movies.length > 0 && <Banner video={video} />}
+      <Nav genres={genres} setError={setError} showGenreMovies={showGenreMovies}/>
+      {location.pathname === '/' && movies.length > 0 && <Banner video={video} /> }
       <div className='divider-div'></div>
       <Routes>
-        <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} />} />
+        <Route path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} />} />
         <Route path='/moviedetails' element={<MovieDetails singleView={singleView} />} />
-        <Route path='/watchlist' element={<WatchList watchList={watchList} removeFromWatchList={removeFromWatchList}/>} />
+        <Route path='/watchlist' element={<WatchList watchList={watchList} removeFromWatchList={removeFromWatchList} />} />
+        <Route path='/genres' element={<GenreContainer specificGenre={specificGenre} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList}/>}/>
       </Routes>
         {location.pathname === '/' && <div className='buttons-div'>
         {pageCount > 1 && <button className='btn selector' onClick={previousChangePage}>Previous</button>}

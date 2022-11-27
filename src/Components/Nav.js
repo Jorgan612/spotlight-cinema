@@ -1,12 +1,14 @@
 import '../SCSS/Nav.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const Nav = ({genres}) => {
+const Nav = ({ genres, showGenreMovies }) => {
+const [searchPhrase, setSearchPhrase] = useState('')
+
   const dropdownList = genres.map((genre) => {
-      return <option key={genre.id} id={genre.id} value={genre.name}>{genre.name}</option>
+      return <option key={genre.id} id={genre.id} value={genre.id}>{genre.name}</option>
     })
-  const [searchPhrase, setSearchPhrase] = useState('')
+
   return (
     <nav className='nav'>
       <h1 className='app-title'>Spotlight Cinema</h1>
@@ -21,10 +23,12 @@ const Nav = ({genres}) => {
         <Link to='/watchlist'>
           <button className='selector watchlist-btn'>Watchlist</button>
         </Link>
-        <select className='dropdown selector'>
-          <option value="genres">All Genres</option>
+        <Link to='/genres'>
+          <select className='dropdown selector' onChange={event => showGenreMovies(event.target.value)}>
+          {/* <option value="genres">All Genres</option> */}
           {dropdownList}
-        </select>
+         </select>
+        </Link>
       </div>
     </nav>
   )

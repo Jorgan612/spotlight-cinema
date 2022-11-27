@@ -3,10 +3,7 @@ import MovieCard from './MovieCard';
 
 const MoviesContainer = ({ movies, getSingleMovieDetails, addToWatchList, watchList, removeFromWatchList }) => {
   const movieList = movies.map((movie, index) => {
-    // still having issue with duplicates 
-
     let isOnWatchList = false;
-    
     watchList.forEach(watchListMovie => {
       if (movie.id === watchListMovie.id) {
         isOnWatchList = true;
@@ -22,13 +19,13 @@ const MoviesContainer = ({ movies, getSingleMovieDetails, addToWatchList, watchL
       isOnWatchList={isOnWatchList}
       removeFromWatchList={removeFromWatchList}
     /> 
-  })
+  });
 
   return (
     <section className='movies-container'>
       {movieList}
     </section>
   )
-}
+};
 
 export default MoviesContainer;

@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 import WatchList from './WatchList';
+import GenreContainer from './GenreContainer';
 
 const App = () => {
   const location = useLocation();
@@ -107,7 +108,6 @@ let url;
     }
 
     const removeFromWatchList = (id) => {
-      console.log("REMOVED ID=====>", id)
       const filteredMovies = watchList.filter((movieTitle) => {
         return id !== movieTitle.id
       })
@@ -123,6 +123,7 @@ let url;
         <Route  path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} />} />
         <Route path='/moviedetails' element={<MovieDetails singleView={singleView} />} />
         <Route path='/watchlist' element={<WatchList watchList={watchList} removeFromWatchList={removeFromWatchList}/>} />
+        <Route path='/genres' element={<GenreContainer />}/>
       </Routes>
         {location.pathname === '/' && <div className='buttons-div'>
         {pageCount > 1 && <button className='btn selector' onClick={previousChangePage}>Previous</button>}

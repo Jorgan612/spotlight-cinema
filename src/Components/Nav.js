@@ -1,8 +1,6 @@
 import '../SCSS/Nav.css';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import MoviesContainer from './MoviesContainer';
-//Should we be using Router for the genres? (diff page views)
 
 // NOTES!!!
 //trying to just get the console to reflect a genre collection when the dropdown is selected for that specific genre
@@ -13,17 +11,19 @@ const Nav = ({ genres, setError }) => {
 const [searchPhrase, setSearchPhrase] = useState('')
 //Below is the specific genres movies after being filtered out if this ever works
 const [specificGenre, setSpecificGenre] = useState([])
-console.log("=======>[specificGenre]", specificGenre)
-const [genreId, setGenreId] = useState(0)
+// console.log("=======>[specificGenre]", specificGenre)
+// const [genreId, setGenreId] = useState(genres[0])
 
-  const showGenreMovies = async (id) => {
-    console.log("ID====>", id)
-    const url = `https://api.themoviedb.org/3/discover/movie?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&with_genres=${id}`; 
+  const showGenreMovies = async (event) => {
+    console.log('event ASYNC', event)
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&with_genres=${event}`; 
     setError('');
     try {
       const response = await fetch(url);
       const genres = await response.json();
+      console.log("BEFPRE setting stategenres===>", genres)
       setSpecificGenre(genres.results);
+      console.log("After setting state genres.results  =>", genres.results)
     } 
     catch(error) {
       setError(error.message);
@@ -31,17 +31,12 @@ const [genreId, setGenreId] = useState(0)
   }
 
   useEffect(() => {
-    showGenreMovies(genreId);
-  }, [genreId]);
+    showGenreMovies();
+  }, []);
 
-const dummmyFunc = (id) => {
-  console.log("ID------>FROM DUMMMY", id)
-}
 
   const dropdownList = genres.map((genre) => {
-    console.log("genre.id ===>", genre.id)
-      // return <option onClick={event => {setGenreId(event.target.value)}} key={genre.id} id={genre.id} value={genre.id}>{genre.name}</option>
-      return <option onClick={() => {dummmyFunc(genre.id)}} key={genre.id} id={genre.id} value={genre.id}>{genre.name}</option>
+      return <option key={genre.id} id={genre.id} value={genre.id}>{genre.name}</option>
     })
 
   return (
@@ -58,10 +53,12 @@ const dummmyFunc = (id) => {
         <Link to='/watchlist'>
           <button className='selector watchlist-btn'>Watchlist</button>
         </Link>
-        <select className='dropdown selector'>
-          <option value="genres">All Genres</option>
+        <Link to='/genre'>
+          <select className='dropdown selector' onChange={event => showGenreMovies(event.target.value)}>
+          {/* <option value="genres">All Genres</option> */}
           {dropdownList}
-        </select>
+         </select>
+        </Link>
       </div>
     </nav>
   )

@@ -13,6 +13,6 @@ const MovieCard  = ( { img, id, getSingleMovieDetails, addToWatchList, isOnWatch
       {isOnWatchList ? removeBtn : addBtn}
     </div>
   )
-}
+};
 
 export default MovieCard;

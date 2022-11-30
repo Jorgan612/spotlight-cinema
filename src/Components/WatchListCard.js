@@ -11,7 +11,6 @@ const WatchListCard = ({ img, id, getSingleMovieDetails, addToWatchList, isOnWat
       {isOnWatchList ? removeBtn : addBtn}
     </div>
   )
-
-}
+};
 
 export default WatchListCard;

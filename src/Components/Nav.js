@@ -32,7 +32,7 @@ const [searchPhrase, setSearchPhrase] = useState('')
       </div>
     </nav>
   )
-}
+};
 
 export default Nav;
 

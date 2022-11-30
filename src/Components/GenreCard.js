@@ -12,6 +12,6 @@ const GenreCard  = ( { img, id, getSingleMovieDetails, addToWatchList, isOnWatch
       {isOnWatchList ? removeBtn : addBtn}
     </div>
   )
-}
+};
 
 export default GenreCard;

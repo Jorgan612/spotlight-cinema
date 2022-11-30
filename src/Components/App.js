@@ -157,5 +157,6 @@ let url;
       </div>}
     </div>
   )
-}
+};
+
 export default App;

@@ -12,7 +12,7 @@ const Banner = ( { video } ) => {
         />
       </section>
   )
-}
+};
 
 export default Banner;
 

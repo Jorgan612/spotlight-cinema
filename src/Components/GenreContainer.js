@@ -1,5 +1,6 @@
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import GenreCard from './GenreCard';
+import '../SCSS/GenreContainer.css';
 
 //Attempt to add to watchlist is not working from the genres => sometimes it is though but the styling isn't working => weird bug
 
@@ -16,9 +17,17 @@ const GenreContainer = ({ getSingleMovieDetails, addToWatchList, removeFromWatch
     /> 
   });
   return (
+  <>
+    <div className='btn-div'>
+      <Link to='/'>
+        <button className='selector return-btn'>Return Home</button>
+      </Link>
+    </div>
     <section className='movies-container'>
       {genreList}
     </section>
+  </>
+    
   )
 };
   

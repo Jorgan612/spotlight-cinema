@@ -9,7 +9,9 @@ import MovieDetails from './MovieDetails';
 import WatchList from './WatchList';
 import GenreContainer from './GenreContainer';
 
+
 const App = () => {
+  const apiKey = process.env.REACT_APP_API_KEY 
   const location = useLocation();
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState('');
@@ -26,14 +28,14 @@ const App = () => {
 //TO PICK UP WITH ON GENRES
 //NEED TO ADD A BACK BTN TO OUR GENRES PAGE TO GET HOME W/O Breaking it
 //Attempt to add to watchlist is not working from the genres 
-
+//see notes about bugginess when attempting to add to watchist from genre
 
 
   // for search functionality test this url: 
   // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
 
   const getMovies = async () => {
-    const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&page=${pageCount}`;
+    const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${apiKey}&page=${pageCount}`;
     setError('');
     try {
       const response = await fetch(url);
@@ -45,7 +47,7 @@ const App = () => {
   }
 
   const getGenre = async () => {
-    const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US`;
+    const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`;
     setError('');
     try {
       const response = await fetch(url);
@@ -59,7 +61,7 @@ const App = () => {
   const getVideo = async () => {    
 let url;
     const randomNum = Math.floor(Math.random() * (1000 - 2 + 1)) + 2;     
-       url = `https://api.themoviedb.org/3/movie/${randomNum}?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&append_to_response=videos`;
+       url = `https://api.themoviedb.org/3/movie/${randomNum}?api_key=${apiKey}&language=en-US&append_to_response=videos`;
         setError();
         try {
           const response = await fetch(url);
@@ -76,14 +78,12 @@ let url;
   
     const showGenreMovies = async (event) => {
     console.log('event ASYNC', event)
-    const url = `https://api.themoviedb.org/3/discover/movie?api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&language=en-US&with_genres=${event}`; 
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&with_genres=${event}`; 
     setError('');
     try {
       const response = await fetch(url);
       const genres = await response.json();
-      console.log("BEFPRE setting stategenres===>", genres)
       setSpecificGenre(genres.results);
-      console.log("After setting state genres.results  =>", genres.results)
     } 
     catch(error) {
       setError(error.message);
@@ -100,7 +100,6 @@ let url;
     getGenre();
     localStorage.setItem('watchList', JSON.stringify(watchList));
   }, [pageCount, location]) 
-
 
   const previousChangePage = () => {
      setPageCount(pageCount - 1);
@@ -158,5 +157,6 @@ let url;
       </div>}
     </div>
   )
-}
+};
+
 export default App;

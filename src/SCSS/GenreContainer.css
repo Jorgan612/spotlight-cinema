@@ -1,0 +1,25 @@
+.btn-div{
+  display: flex;
+  justify-content: center;
+  height: 10vh;
+  padding: 10px;
+}
+
+.return-btn {
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.return-btn {
+  color: #EBAB47;
+  cursor: pointer;
+  padding: 5px;
+  margin: 5px;
+  border: none;
+  font-size: 25px;
+  background-color: #333;
+}
+
+.return-btn:hover {
+  color: #fcc771;
+}

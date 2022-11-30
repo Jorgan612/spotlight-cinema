@@ -25,7 +25,7 @@ const [searchPhrase, setSearchPhrase] = useState('')
         </Link>
         <Link to='/genres'>
           <select className='dropdown selector' onChange={event => showGenreMovies(event.target.value)}>
-          {/* <option value="genres">All Genres</option> */}
+          <option value="genres">All Genres</option>
           {dropdownList}
          </select>
         </Link>

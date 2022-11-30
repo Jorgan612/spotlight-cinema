@@ -1,7 +1,7 @@
 // import { Link } from 'react-router-dom';
 import GenreCard from './GenreCard';
 
-//Attempt to add to watchlist is not working from the genres 
+//Attempt to add to watchlist is not working from the genres => sometimes it is though but the styling isn't working => weird bug
 
 const GenreContainer = ({ getSingleMovieDetails, addToWatchList, removeFromWatchList,specificGenre, isOnWatchList }) => {
   const genreList = specificGenre.map((movie, index) => {

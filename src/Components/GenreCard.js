@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-// import '../SCSS/MovieCard.css';
 
 const GenreCard  = ( { img, id, getSingleMovieDetails, addToWatchList, isOnWatchList, removeFromWatchList } ) => {
  

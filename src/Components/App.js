@@ -8,7 +8,6 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 import WatchList from './WatchList';
 import GenreContainer from './GenreContainer';
-import Search from './Search'
 
 
 const App = () => {
@@ -31,9 +30,8 @@ const App = () => {
     const [isSearching, setIsSearching] = useState(false);
 
 //TO PICK UP WITH ON GENRES
-//NEED TO ADD A BACK BTN TO OUR GENRES PAGE TO GET HOME W/O Breaking it
-//Attempt to add to watchlist is not working from the genres 
-//see notes about bugginess when attempting to add to watchist from genre
+//Attempt to add to watchlist is not working from the genres / same issue with search
+//see notes about bugginess when attempting to add to watchist from genre / see nav note about search as well
 
 
   // for search functionality test this url: 
@@ -120,7 +118,6 @@ let url;
   if(searchValue === '') {
     setSpecificMovie([])
   }
-  console.log("specific Movie =>", specificMovie)
   showGenreMovies();
   }, [searchValue]);
 
@@ -164,7 +161,7 @@ let url;
 
   return (
        <div className='app selector'>
-      <Nav genres={genres} setError={setError} showGenreMovies={showGenreMovies} setSearchValue={setSearchValue} searchValue={searchValue}/>
+      <Nav genres={genres} setError={setError} showGenreMovies={showGenreMovies} setSearchValue={setSearchValue} searchValue={searchValue} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} />
       {location.pathname === '/' && movies.length > 0 && <Banner video={video} /> }
       <div className='divider-div'></div>
       <Routes>

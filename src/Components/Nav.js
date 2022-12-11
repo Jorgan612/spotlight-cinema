@@ -1,24 +1,26 @@
 import '../SCSS/Nav.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Search from './Search';
 
-const Nav = ({ genres, showGenreMovies }) => {
-const [searchPhrase, setSearchPhrase] = useState('')
+const Nav = ({ genres, movies, showGenreMovies, setSearchValue, showSpecificMovie, setIsSearching, isSearching, searchValue }) => {
 
   const dropdownList = genres.map((genre) => {
       return <option key={genre.id} id={genre.id} value={genre.id}>{genre.name}</option>
     })
 
+
   return (
     <nav className='nav'>
       <h1 className='app-title'>Spotlight Cinema</h1>
-      <input 
+      <Search setSearchValue={setSearchValue} searchValue={searchValue} />
+      {/* <input 
         className='search-bar-input selector'
         type='text'
         placeholder='Search by title...'
         value={searchPhrase}
-        onChange={event => setSearchPhrase(event.target.value)}
-      />
+        onChange={handleFilter}
+      /> */}
       <div className='watchlist-genre-container'>
         <Link to='/watchlist'>
           <button className='selector watchlist-btn'>Watchlist</button>

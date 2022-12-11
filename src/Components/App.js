@@ -8,6 +8,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 import WatchList from './WatchList';
 import GenreContainer from './GenreContainer';
+import Search from './Search'
 
 
 const App = () => {
@@ -20,11 +21,15 @@ const App = () => {
   const [genres, setGenres] = useState([]);
   const [video, setVideo] = useState([]);
   const [specificGenre, setSpecificGenre] = useState([])
+  const [specificMovie, setSpecificMovie] = useState([])
+  const [searchValue, setSearchValue] = useState('')
   const [watchList, setWatchList] = useState(() => {
     const savedTitles = JSON.parse(localStorage.getItem('watchList'));
     const initialValue = savedTitles || [];
     return initialValue;
   });
+    const [isSearching, setIsSearching] = useState(false);
+
 //TO PICK UP WITH ON GENRES
 //NEED TO ADD A BACK BTN TO OUR GENRES PAGE TO GET HOME W/O Breaking it
 //Attempt to add to watchlist is not working from the genres 
@@ -56,7 +61,7 @@ const App = () => {
     } catch(error) {
       setError(error.message);
     }
-  }
+  };
 
   const getVideo = async () => {    
 let url;
@@ -74,10 +79,16 @@ let url;
         } catch(error) {
           setError(error.message);
         }
-    }
+    };
+
+    useEffect(() => {
+    getVideo();
+    getMovies();
+    getGenre();
+    localStorage.setItem('watchList', JSON.stringify(watchList));
+  }, [pageCount, location]);
   
     const showGenreMovies = async (event) => {
-    console.log('event ASYNC', event)
     const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&with_genres=${event}`; 
     setError('');
     try {
@@ -88,39 +99,51 @@ let url;
     catch(error) {
       setError(error.message);
     }
+  };
+
+  useEffect(() => {
+     const searchMoviesByTitle = async (search) => {
+     const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${search}`; 
+    setError('');
+    try {
+      const response = await fetch(url);
+      const specificMovie = await response.json();
+      setSpecificMovie(specificMovie.results);
+    } 
+    catch(error) {
+      setError(error.message);
+    }
+  };
+  if(searchValue !== '') {
+    searchMoviesByTitle(searchValue);
+  } 
+  if(searchValue === '') {
+    setSpecificMovie([])
   }
-
-  useEffect(() => {
-    showGenreMovies();
-  }, []);
-
-  useEffect(() => {
-    getVideo();
-    getMovies();
-    getGenre();
-    localStorage.setItem('watchList', JSON.stringify(watchList));
-  }, [pageCount, location]) 
+  console.log("specific Movie =>", specificMovie)
+  showGenreMovies();
+  }, [searchValue]);
 
   const previousChangePage = () => {
      setPageCount(pageCount - 1);
      getMovies();
-  }
+  };
 
   const nextChangePage = () => {
     setPageCount(pageCount + 1);
      getMovies();
-  }
+  };
 
   const returnToPageOne = () => {
     setPageCount(1);
-  }
+  };
 
   const getSingleMovieDetails = (id) => {
     const singleMovie = movies.find((movie) => {
       return id === movie.id;
-    })
+    });
     setSingleView(singleMovie);
-  }
+  };
 
   const addToWatchList = (id) => {
       const addMovie = movies.find((movie) => {
@@ -130,22 +153,22 @@ let url;
       })
       let uniqueWatchList = [...new Set(watchList)];
       setWatchList(uniqueWatchList);
-    }
+    };
 
     const removeFromWatchList = (id) => {
       const filteredMovies = watchList.filter((movieTitle) => {
         return id !== movieTitle.id
       })
       setWatchList(filteredMovies);
-    }
+    };
 
   return (
-    <div className='app selector'>
-      <Nav genres={genres} setError={setError} showGenreMovies={showGenreMovies}/>
+       <div className='app selector'>
+      <Nav genres={genres} setError={setError} showGenreMovies={showGenreMovies} setSearchValue={setSearchValue} searchValue={searchValue}/>
       {location.pathname === '/' && movies.length > 0 && <Banner video={video} /> }
       <div className='divider-div'></div>
       <Routes>
-        <Route path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} />} />
+        <Route path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} specificMovie={specificMovie}/>} />
         <Route path='/moviedetails' element={<MovieDetails singleView={singleView} />} />
         <Route path='/watchlist' element={<WatchList watchList={watchList} removeFromWatchList={removeFromWatchList} />} />
         <Route path='/genres' element={<GenreContainer specificGenre={specificGenre} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList}/>}/>

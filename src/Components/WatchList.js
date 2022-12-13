@@ -32,13 +32,14 @@ const WatchList = ({ watchList, getSingleMovieDetails, removeFromWatchList, spec
   return (
     <div className='watchlist-titles-div'>
       <h1 className='selector'>Watchlist</h1>
+      <Link to='/'>
+          <button className='selector'>Return Home</button>
+        </Link>
       {watchList.length > 0 ? <div className='titles-container'>
         { watchListMovies }
       </div> : <p>You have no movies saved to your watchlist at this time.</p>}
       <div className='back-btn-div'>
-        <Link to='/'>
-          <button className='selector'>Back</button>
-        </Link>
+        
       </div>
     </div>
   )

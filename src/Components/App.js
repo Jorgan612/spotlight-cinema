@@ -146,18 +146,14 @@ let url;
     //note to self: new bug noticed, the CSS updates but movie is not actually removed
 
   const addToWatchList = (id) => {
-    console.log("is this being clicked?", id)
-    const allMovies = [...movies, ...genres, ...specificMovie]
-      console.log("ALL movies", allMovies)
-
-      const addMovie = allMovies.find((movie) => {
-        if(movie.id === id) {
-          watchList.push(movie);
-        }
+    const allMovies = [...movies, ...specificGenre, ...specificMovie]
+      const addMovie = 
+      allMovies.find((movie) => {
+        return movie.id === id
       })
+      watchList.push(addMovie);
       let uniqueWatchList = [...new Set(watchList)];
-      setWatchList(uniqueWatchList);
-      
+      setWatchList(uniqueWatchList);   
     };
 
    
@@ -186,10 +182,10 @@ let url;
       {location.pathname === '/' && movies.length > 0 && <Banner video={video} /> }
       <div className='divider-div'></div>
       <Routes>
-        <Route path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} specificMovie={specificMovie}/>} />
+        <Route path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} specificMovie={specificMovie} />} />
         <Route path='/moviedetails' element={<MovieDetails getSingleMovieDetails={getSingleMovieDetails} singleView={singleView} />} />
         <Route path='/watchlist' element={<WatchList watchList={watchList} removeFromWatchList={removeFromWatchList} getSingleMovieDetails={getSingleMovieDetails}/>} />
-        <Route path='/genres' element={<GenreContainer specificGenre={specificGenre} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList}/>}/>
+        <Route path='/genres' element={<MoviesContainer movies={specificGenre} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} specificMovie={specificMovie} />}/>
       </Routes>
         {location.pathname === '/' && <div className='buttons-div'>
         {pageCount > 1 && <button className='btn selector' onClick={previousChangePage}>Previous</button>}

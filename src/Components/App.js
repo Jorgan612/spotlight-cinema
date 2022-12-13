@@ -7,8 +7,6 @@ import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 import WatchList from './WatchList';
-import GenreContainer from './GenreContainer';
-
 
 const App = () => {
   const apiKey = process.env.REACT_APP_API_KEY 
@@ -19,23 +17,15 @@ const App = () => {
   const [singleView, setSingleView] = useState({});
   const [genres, setGenres] = useState([]);
   const [video, setVideo] = useState([]);
-  const [specificGenre, setSpecificGenre] = useState([])
-  const [specificMovie, setSpecificMovie] = useState([])
-  const [searchValue, setSearchValue] = useState('')
+  const [specificGenre, setSpecificGenre] = useState([]);
+  const [specificMovie, setSpecificMovie] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
   const [watchList, setWatchList] = useState(() => {
     const savedTitles = JSON.parse(localStorage.getItem('watchList'));
     const initialValue = savedTitles || [];
     return initialValue;
   });
     const [isSearching, setIsSearching] = useState(false);
-
-//TO PICK UP WITH ON GENRES
-//Attempt to add to watchlist is not working from the genres / same issue with search
-//see notes about bugginess when attempting to add to watchist from genre / see nav note about search as well
-
-
-  // for search functionality test this url: 
-  // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
 
   const getMovies = async () => {
     const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${apiKey}&page=${pageCount}`;
@@ -47,7 +37,7 @@ const App = () => {
     } catch(error) {
       setError(error.message);
     }
-  }
+  };
 
   const getGenre = async () => {
     const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`;
@@ -142,13 +132,9 @@ let url;
     setSingleView(singleMovie);
   };
 
-  //this is only iteration over the movies array -> NOT the genre or search (would an if/else make sense) => testing it with specificMovie works but NOT with specificGenre // same if find becomes a filter (those two work -> specificGenre isn't a single movie but it is a array of that specific movies array)
-    //note to self: new bug noticed, the CSS updates but movie is not actually removed
-
   const addToWatchList = (id) => {
     const allMovies = [...movies, ...specificGenre, ...specificMovie]
-      const addMovie = 
-      allMovies.find((movie) => {
+    const addMovie = allMovies.find((movie) => {
         return movie.id === id
       })
       watchList.push(addMovie);
@@ -156,26 +142,13 @@ let url;
       setWatchList(uniqueWatchList);   
     };
 
-   
-
-  // const addToWatchList = (id) => {
-  //   let addMovie;
-  //   if(addMovie = movies.find(movie => movie.id === movie)) {
-  //     let uniqueWatchList = [...new Set(watchList)];
-  //     setWatchList(uniqueWatchList)
-  //   } if(addMovie = specificMovie.find(movie => movie.id === movie))  {
-  //     let uniqueWatchList = [...new Set(watchList)];
-  //     setWatchList(uniqueWatchList)
-  //   } 
-  // }
-
-    const removeFromWatchList = (id) => {
-      const filteredMovies = watchList.filter((movieTitle) => {
-        return id !== movieTitle.id
-      })
-      setWatchList(filteredMovies);
-    };
-
+  const removeFromWatchList = (id) => {
+    const filteredMovies = watchList.filter((movieTitle) => {
+      return id !== movieTitle.id
+    })
+    setWatchList(filteredMovies);
+  };
+  
   return (
        <div className='app selector'>
       <Nav genres={genres} setError={setError} showGenreMovies={showGenreMovies} setSearchValue={setSearchValue} searchValue={searchValue} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} />

@@ -2,6 +2,8 @@ import '../SCSS/WatchList.css';
 import { Link } from 'react-router-dom';
 import WatchListCard from '../Components/WatchListCard';
 
+//Search doesn't work yet when in the watchlist films -> need to fix this
+
 const WatchList = ({ watchList, getSingleMovieDetails, removeFromWatchList }) => {
   const watchListTitles = watchList.map((movie, index) => {
      return <WatchListCard 

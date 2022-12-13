@@ -1,10 +1,7 @@
 import '../SCSS/MoviesContainer.css';
 import MovieCard from './MovieCard';
 
-//Search works BUT now there is a debugging issue around not being able to add results from search to watchlist ???   see first half of functionality within movies container
-
 const MoviesContainer = ({ movies, getSingleMovieDetails, addToWatchList, watchList, removeFromWatchList, specificMovie }) => {
-
   let movieList;
   if (specificMovie.length > 0) {
     movieList = specificMovie.map((movie, index) => {
@@ -43,7 +40,6 @@ const MoviesContainer = ({ movies, getSingleMovieDetails, addToWatchList, watchL
     /> 
   })
 };
-
   return (
     <section className='movies-container'>
       {movieList}

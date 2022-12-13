@@ -1,6 +1,8 @@
 import '../SCSS/MovieDetails.css';
 import { Link } from 'react-router-dom';
 
+//CERTAIN MOVIES LIKE BRINGING UP BABY BREAKING ON LINE 10 -> ERROR: Uncaught TypeError: Cannot read properties of undefined (reading 'title') / but working fine for others 
+
 const MovieDetails = ({ singleView }) => {
   return (
     <div className='movie-details-div'>

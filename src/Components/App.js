@@ -83,6 +83,7 @@ let url;
     getVideo();
     getMovies();
     getGenre();
+    showGenreMovies();
     localStorage.setItem('watchList', JSON.stringify(watchList));
   }, [pageCount, location]);
   
@@ -118,7 +119,6 @@ let url;
   if(searchValue === '') {
     setSpecificMovie([])
   }
-  showGenreMovies();
   }, [searchValue]);
 
   const previousChangePage = () => {
@@ -142,15 +142,36 @@ let url;
     setSingleView(singleMovie);
   };
 
+  //this is only iteration over the movies array -> NOT the genre or search (would an if/else make sense) => testing it with specificMovie works but NOT with specificGenre // same if find becomes a filter (those two work -> specificGenre isn't a single movie but it is a array of that specific movies array)
+    //note to self: new bug noticed, the CSS updates but movie is not actually removed
+
   const addToWatchList = (id) => {
-      const addMovie = movies.find((movie) => {
+    console.log("is this being clicked?", id)
+    const allMovies = [...movies, ...genres, ...specificMovie]
+      console.log("ALL movies", allMovies)
+
+      const addMovie = allMovies.find((movie) => {
         if(movie.id === id) {
           watchList.push(movie);
         }
       })
       let uniqueWatchList = [...new Set(watchList)];
       setWatchList(uniqueWatchList);
+      
     };
+
+   
+
+  // const addToWatchList = (id) => {
+  //   let addMovie;
+  //   if(addMovie = movies.find(movie => movie.id === movie)) {
+  //     let uniqueWatchList = [...new Set(watchList)];
+  //     setWatchList(uniqueWatchList)
+  //   } if(addMovie = specificMovie.find(movie => movie.id === movie))  {
+  //     let uniqueWatchList = [...new Set(watchList)];
+  //     setWatchList(uniqueWatchList)
+  //   } 
+  // }
 
     const removeFromWatchList = (id) => {
       const filteredMovies = watchList.filter((movieTitle) => {
@@ -166,8 +187,8 @@ let url;
       <div className='divider-div'></div>
       <Routes>
         <Route path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} specificMovie={specificMovie}/>} />
-        <Route path='/moviedetails' element={<MovieDetails singleView={singleView} />} />
-        <Route path='/watchlist' element={<WatchList watchList={watchList} removeFromWatchList={removeFromWatchList} />} />
+        <Route path='/moviedetails' element={<MovieDetails getSingleMovieDetails={getSingleMovieDetails} singleView={singleView} />} />
+        <Route path='/watchlist' element={<WatchList watchList={watchList} removeFromWatchList={removeFromWatchList} getSingleMovieDetails={getSingleMovieDetails}/>} />
         <Route path='/genres' element={<GenreContainer specificGenre={specificGenre} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList}/>}/>
       </Routes>
         {location.pathname === '/' && <div className='buttons-div'>
@@ -179,4 +200,4 @@ let url;
   )
 };
 
-export default App;
+export default App

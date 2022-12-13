@@ -1,7 +1,8 @@
 import '../SCSS/MoviesContainer.css';
 import MovieCard from './MovieCard';
 
-const MoviesContainer = ({ movies, getSingleMovieDetails, addToWatchList, watchList, removeFromWatchList, specificMovie }) => {
+
+const MoviesContainer = ({ movies, getSingleMovieDetails, addToWatchList, watchList, removeFromWatchList, specificMovie, setSearchValue, searchValue  }) => {
   let movieList;
   if (specificMovie.length > 0) {
     movieList = specificMovie.map((movie, index) => {
@@ -43,7 +44,7 @@ const MoviesContainer = ({ movies, getSingleMovieDetails, addToWatchList, watchL
   return (
     <section className='movies-container'>
       {movieList}
-    </section>
+    </section>  
   )
 };
 

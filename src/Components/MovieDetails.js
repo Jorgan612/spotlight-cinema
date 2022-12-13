@@ -1,13 +1,15 @@
 import '../SCSS/MovieDetails.css';
 import { Link } from 'react-router-dom';
 
-//CERTAIN MOVIES LIKE BRINGING UP BABY BREAKING ON LINE 10 -> ERROR: Uncaught TypeError: Cannot read properties of undefined (reading 'title') / but working fine for others 
+//CERTAIN MOVIES LIKE BRINGING UP BABY BREAKING ON LINE 10 -> ERROR: Uncaught TypeError: Cannot read properties of undefined (reading 'title') / but working fine for others, singleView returns as undefined
 
 const MovieDetails = ({ singleView }) => {
+  console.log("single view", singleView)
   return (
     <div className='movie-details-div'>
       <div className='details-border-div'>
-        <h1 className='details-title'>{singleView.title}</h1>
+        <h1 className='details-title'>{singleView.original_title
+}</h1>
         <div className='img-details-div'>
           <div className='img-div'>
             <img className='backdrop-img' id={singleView.id} src={`https://image.tmdb.org/t/p/w500${singleView.backdrop_path}`} alt='single view poster'/>

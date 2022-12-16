@@ -1,6 +1,7 @@
 import '../SCSS/WatchList.css';
 import { Link } from 'react-router-dom';
 import WatchListCard from '../Components/WatchListCard';
+import SearchWatchList from './SearchWatchList';
 
 //Search doesn't work yet when in the watchlist films -> need to fix this (can search BUT it searches everything then regardless) -> needs to be tweaked
 
@@ -8,7 +9,9 @@ import WatchListCard from '../Components/WatchListCard';
 
 //need to debug or rework search capability, it works but not as it should
 
-const WatchList = ({ watchList, getSingleMovieDetails, removeFromWatchList, specificMovie }) => {
+const WatchList = ({ watchList, getSingleMovieDetails, removeFromWatchList, specificMovie, setIsSearching, isSearching }) => {
+  
+
  let watchListMovies;
  if(specificMovie.length > 0) {
   watchListMovies = specificMovie.map
@@ -20,10 +23,12 @@ const WatchList = ({ watchList, getSingleMovieDetails, removeFromWatchList, spec
         getSingleMovieDetails={getSingleMovieDetails}
         isOnWatchList={true}
         removeFromWatchList={removeFromWatchList}
+        setIsSearching={setIsSearching}
+        isSearching={isSearching}
+        watchList={watchList}
       /> 
   })
  } else {
-  
   watchListMovies = watchList.map((movie, index) => {
      return <WatchListCard 
         img={movie.poster_path}
@@ -32,15 +37,22 @@ const WatchList = ({ watchList, getSingleMovieDetails, removeFromWatchList, spec
         getSingleMovieDetails={getSingleMovieDetails}
         isOnWatchList={true}
         removeFromWatchList={removeFromWatchList}
+        setIsSearching={setIsSearching}
+        isSearching={isSearching}
+        watchList={watchList}
       />
   })
 }
+
   return (
     <div className='watchlist-titles-div'>
       <h1 className='selector'>Watchlist</h1>
       <Link to='/'>
           <button className='selector'>Return Home</button>
         </Link>
+        <SearchWatchList specificMovie={specificMovie} 
+        setIsSearching={setIsSearching} 
+        isSearching={isSearching} />
       {watchList.length > 0 ? <div className='titles-container'>
         { watchListMovies }
       </div> : <p>You have no movies saved to your watchlist at this time.</p>}

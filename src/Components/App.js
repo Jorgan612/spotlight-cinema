@@ -25,6 +25,9 @@ const App = () => {
     const initialValue = savedTitles || [];
     return initialValue;
   });
+  const [isSearching, setIsSearching] = useState(false);
+
+
 
   const getMovies = async () => {
     const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${apiKey}&page=${pageCount}`;
@@ -102,12 +105,13 @@ let url;
       setError(error.message);
     }
   };
+
   if(searchValue !== '') {
     searchMoviesByTitle(searchValue);
-  } 
-  if(searchValue === '') {
+  } if(searchValue === '') {
     setSpecificMovie([])
-  }
+  } 
+
   }, [searchValue]);
 
   const previousChangePage = () => {
@@ -156,7 +160,7 @@ let url;
       <Routes>
         <Route path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} specificMovie={specificMovie}  />} />
         <Route path='/moviedetails' element={<MovieDetails getSingleMovieDetails={getSingleMovieDetails} singleView={singleView} />} />
-        <Route path='/watchlist' element={<WatchList watchList={watchList} removeFromWatchList={removeFromWatchList} getSingleMovieDetails={getSingleMovieDetails} specificMovie={specificMovie} />} />
+        <Route path='/watchlist' element={<WatchList watchList={watchList} removeFromWatchList={removeFromWatchList} getSingleMovieDetails={getSingleMovieDetails} specificMovie={specificMovie} setIsSearching={setIsSearching} isSearching={isSearching}  />} />
         <Route path='/genres' element={<MoviesContainer movies={specificGenre} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} specificMovie={specificMovie}  />}/>
       </Routes>
         {location.pathname === '/' && <div className='buttons-div'>

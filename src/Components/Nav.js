@@ -1,6 +1,8 @@
 import '../SCSS/Nav.css';
 import { Link } from 'react-router-dom';
 import spotlight from './spotlight.png'
+import spotlightalt from './spotlightalt.png'
+
 
 // import Search from './Search';
 

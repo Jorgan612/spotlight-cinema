@@ -1,5 +1,7 @@
 import '../SCSS/Nav.css';
 import { Link } from 'react-router-dom';
+import spotlight from './spotlight.png'
+
 // import Search from './Search';
 
 const Nav = ({ genres, showGenreMovies, setSearchValue, searchValue }) => {
@@ -9,7 +11,10 @@ const Nav = ({ genres, showGenreMovies, setSearchValue, searchValue }) => {
   return (
     <nav className='nav'>
       <h1 className='app-title'>Spotlight Cinema</h1>
+      <img className='spotlight-logo' src={spotlight}/>
       {/* <Search setSearchValue={setSearchValue} searchValue={searchValue}  /> */}
+      {/* <img>spotlight</img> */}
+      <src></src>
       <div className='watchlist-genre-container'>
         <Link to='/watchlist'>
           <button className='selector watchlist-btn'>Watchlist</button>

@@ -9,6 +9,11 @@
 .app-title {
   color: #EBAB47;
   font-size: 3.5em;
+  margin-right: 1.5em;
+}
+
+.spotlight-logo {
+  height: 85px;
 }
 
 .watchlist-genre-container {

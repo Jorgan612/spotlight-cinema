@@ -1,5 +1,7 @@
 import '../SCSS/MoviesContainer.css';
 import MovieCard from './MovieCard';
+import Search from './Search';
+
 
 
 const MoviesContainer = ({ movies, getSingleMovieDetails, addToWatchList, watchList, removeFromWatchList, specificMovie, setSearchValue, searchValue  }) => {
@@ -43,7 +45,11 @@ const MoviesContainer = ({ movies, getSingleMovieDetails, addToWatchList, watchL
 };
   return (
     <section className='movies-container'>
-      {movieList}
+      <div className='search-bar-input'>
+        <Search setSearchValue={setSearchValue} searchValue={searchValue}  />
+        <div className='divider-div'></div>
+      </div>
+        {movieList}
     </section>  
   )
 };

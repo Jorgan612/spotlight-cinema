@@ -1,7 +1,7 @@
 import '../SCSS/WatchList.css';
 import { Link } from 'react-router-dom';
 import WatchListCard from '../Components/WatchListCard';
-import SearchWatchList from './SearchWatchList';
+// import SearchWatchList from './SearchWatchList';
 
 //Search doesn't work yet when in the watchlist films -> need to fix this (can search BUT it searches everything then regardless) -> needs to be tweaked
 
@@ -23,9 +23,9 @@ const WatchList = ({ watchList, getSingleMovieDetails, removeFromWatchList, spec
         getSingleMovieDetails={getSingleMovieDetails}
         isOnWatchList={true}
         removeFromWatchList={removeFromWatchList}
-        setIsSearching={setIsSearching}
-        isSearching={isSearching}
-        watchList={watchList}
+        // setIsSearching={setIsSearching}
+        // isSearching={isSearching}
+        // watchList={watchList}
       /> 
   })
  } else {
@@ -37,9 +37,9 @@ const WatchList = ({ watchList, getSingleMovieDetails, removeFromWatchList, spec
         getSingleMovieDetails={getSingleMovieDetails}
         isOnWatchList={true}
         removeFromWatchList={removeFromWatchList}
-        setIsSearching={setIsSearching}
-        isSearching={isSearching}
-        watchList={watchList}
+        // setIsSearching={setIsSearching}
+        // isSearching={isSearching}
+        // watchList={watchList}
       />
   })
 }
@@ -50,9 +50,9 @@ const WatchList = ({ watchList, getSingleMovieDetails, removeFromWatchList, spec
       <Link to='/'>
           <button className='selector'>Return Home</button>
         </Link>
-        <SearchWatchList specificMovie={specificMovie} 
+        {/* <SearchWatchList specificMovie={specificMovie} 
         setIsSearching={setIsSearching} 
-        isSearching={isSearching} />
+        isSearching={isSearching} /> */}
       {watchList.length > 0 ? <div className='titles-container'>
         { watchListMovies }
       </div> : <p>You have no movies saved to your watchlist at this time.</p>}

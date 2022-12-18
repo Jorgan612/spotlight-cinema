@@ -1,6 +1,6 @@
 import '../SCSS/Nav.css';
 import { Link } from 'react-router-dom';
-import Search from './Search';
+// import Search from './Search';
 
 const Nav = ({ genres, showGenreMovies, setSearchValue, searchValue }) => {
   const dropdownList = genres.map((genre) => {
@@ -9,7 +9,7 @@ const Nav = ({ genres, showGenreMovies, setSearchValue, searchValue }) => {
   return (
     <nav className='nav'>
       <h1 className='app-title'>Spotlight Cinema</h1>
-      <Search setSearchValue={setSearchValue} searchValue={searchValue}  />
+      {/* <Search setSearchValue={setSearchValue} searchValue={searchValue}  /> */}
       <div className='watchlist-genre-container'>
         <Link to='/watchlist'>
           <button className='selector watchlist-btn'>Watchlist</button>

@@ -156,7 +156,7 @@ let url;
   
   return (
     <div className='app selector'>
-      <Nav genres={genres} setError={setError} showGenreMovies={showGenreMovies} setSearchValue={setSearchValue} searchValue={searchValue} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} />
+      <Nav genres={genres} setError={setError} showGenreMovies={showGenreMovies} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} />
       {location.pathname === '/' && movies.length > 0 && <Banner video={video} /> }
       <div className='divider-div'></div>
       <Routes>

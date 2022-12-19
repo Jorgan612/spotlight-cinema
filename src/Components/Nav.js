@@ -1,7 +1,9 @@
 import '../SCSS/Nav.css';
 import { Link } from 'react-router-dom';
-import spotlight from './spotlight.png'
-import spotlightalt from './spotlightalt.png'
+import spotlight from '../icons/spotlight.png';
+import homepage from '../icons/homepage.png'
+
+
 
 
 // import Search from './Search';
@@ -26,6 +28,9 @@ const Nav = ({ genres, showGenreMovies, setSearchValue, searchValue }) => {
           <option value="genres">All Genres</option>
           {dropdownList}
          </select>
+        </Link>
+        <Link to='/'>
+          <img className='return-home-btn' src={homepage}></img>
         </Link>
       </div>
     </nav>

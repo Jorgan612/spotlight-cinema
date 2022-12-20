@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 import WatchList from './WatchList';
-import GenreContainer from './GenreContainer';
+import Search from './Search';
 
 
 const App = () => {
@@ -19,20 +19,17 @@ const App = () => {
   const [singleView, setSingleView] = useState({});
   const [genres, setGenres] = useState([]);
   const [video, setVideo] = useState([]);
-  const [specificGenre, setSpecificGenre] = useState([])
+  const [specificGenre, setSpecificGenre] = useState([]);
+  const [specificMovie, setSpecificMovie] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
   const [watchList, setWatchList] = useState(() => {
     const savedTitles = JSON.parse(localStorage.getItem('watchList'));
     const initialValue = savedTitles || [];
     return initialValue;
   });
-//TO PICK UP WITH ON GENRES
-//NEED TO ADD A BACK BTN TO OUR GENRES PAGE TO GET HOME W/O Breaking it
-//Attempt to add to watchlist is not working from the genres 
-//see notes about bugginess when attempting to add to watchist from genre
+  const [isSearching, setIsSearching] = useState(false);
 
 
-  // for search functionality test this url: 
-  // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
 
   const getMovies = async () => {
     const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${apiKey}&page=${pageCount}`;
@@ -44,7 +41,7 @@ const App = () => {
     } catch(error) {
       setError(error.message);
     }
-  }
+  };
 
   const getGenre = async () => {
     const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`;
@@ -56,7 +53,7 @@ const App = () => {
     } catch(error) {
       setError(error.message);
     }
-  }
+  };
 
   const getVideo = async () => {    
 let url;
@@ -74,10 +71,17 @@ let url;
         } catch(error) {
           setError(error.message);
         }
-    }
+    };
+
+    useEffect(() => {
+    getVideo();
+    getMovies();
+    getGenre();
+    showGenreMovies();
+    localStorage.setItem('watchList', JSON.stringify(watchList));
+  }, [pageCount, location]);
   
     const showGenreMovies = async (event) => {
-    console.log('event ASYNC', event)
     const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&with_genres=${event}`; 
     setError('');
     try {
@@ -88,67 +92,78 @@ let url;
     catch(error) {
       setError(error.message);
     }
-  }
+  };
 
   useEffect(() => {
-    showGenreMovies();
-  }, []);
+     const searchMoviesByTitle = async (search) => {
+     const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${search}`; 
+    setError('');
+    try {
+      const response = await fetch(url);
+      const specificMovie = await response.json();
+      setSpecificMovie(specificMovie.results);
+    } 
+    catch(error) {
+      setError(error.message);
+    }
+  };
 
-  useEffect(() => {
-    getVideo();
-    getMovies();
-    getGenre();
-    localStorage.setItem('watchList', JSON.stringify(watchList));
-  }, [pageCount, location]) 
+  if(searchValue !== '') {
+    searchMoviesByTitle(searchValue);
+  } if(searchValue === '') {
+    setSpecificMovie([])
+  } 
+
+  }, [searchValue]);
 
   const previousChangePage = () => {
      setPageCount(pageCount - 1);
      getMovies();
-  }
+  };
 
   const nextChangePage = () => {
     setPageCount(pageCount + 1);
      getMovies();
-  }
+  };
 
   const returnToPageOne = () => {
     setPageCount(1);
-  }
+  };
 
   const getSingleMovieDetails = (id) => {
     const singleMovie = movies.find((movie) => {
       return id === movie.id;
-    })
+    });
     setSingleView(singleMovie);
-  }
+  };
 
   const addToWatchList = (id) => {
-      const addMovie = movies.find((movie) => {
-        if(movie.id === id) {
-          watchList.push(movie);
-        }
+    const allMovies = [...movies, ...specificGenre, ...specificMovie]
+    const addMovie = allMovies.find((movie) => {
+        return movie.id === id
       })
+      watchList.push(addMovie);
       let uniqueWatchList = [...new Set(watchList)];
-      setWatchList(uniqueWatchList);
-    }
+      setWatchList(uniqueWatchList);   
+    };
 
-    const removeFromWatchList = (id) => {
-      const filteredMovies = watchList.filter((movieTitle) => {
-        return id !== movieTitle.id
-      })
-      setWatchList(filteredMovies);
-    }
-
+  const removeFromWatchList = (id) => {
+    const filteredMovies = watchList.filter((movieTitle) => {
+      return id !== movieTitle.id
+    })
+    setWatchList(filteredMovies);
+  };
+  
   return (
     <div className='app selector'>
-      <Nav genres={genres} setError={setError} showGenreMovies={showGenreMovies}/>
+      <Nav genres={genres} setError={setError} showGenreMovies={showGenreMovies} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} />
       {location.pathname === '/' && movies.length > 0 && <Banner video={video} /> }
       <div className='divider-div'></div>
       <Routes>
-        <Route path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} />} />
-        <Route path='/moviedetails' element={<MovieDetails singleView={singleView} />} />
-        <Route path='/watchlist' element={<WatchList watchList={watchList} removeFromWatchList={removeFromWatchList} />} />
-        <Route path='/genres' element={<GenreContainer specificGenre={specificGenre} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList}/>}/>
+        <Route path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} specificMovie={specificMovie}  setSearchValue={setSearchValue} searchValue={searchValue}/>} />
+        <Route path='/moviedetails' element={<MovieDetails getSingleMovieDetails={getSingleMovieDetails} singleView={singleView} />} />
+        <Route path='/watchlist' element={<WatchList watchList={watchList} removeFromWatchList={removeFromWatchList} getSingleMovieDetails={getSingleMovieDetails} specificMovie={specificMovie} setIsSearching={setIsSearching} isSearching={isSearching}  />} />
+        <Route path='/genres' element={<MoviesContainer movies={specificGenre} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} specificMovie={specificMovie} setSearchValue={setSearchValue} searchValue={searchValue} />}/>
       </Routes>
         {location.pathname === '/' && <div className='buttons-div'>
         {pageCount > 1 && <button className='btn selector' onClick={previousChangePage}>Previous</button>}
@@ -159,4 +174,4 @@ let url;
   )
 };
 
-export default App;
+export default App

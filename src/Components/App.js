@@ -130,8 +130,10 @@ let url;
     setPageCount(1);
   };
 
+  //is there another way to do this? like by name?
   const getSingleMovieDetails = (id) => {
-    const singleMovie = movies.find((movie) => {
+    const allTitles = [...movies, ...specificGenre, ...specificMovie]
+    const singleMovie = allTitles.find((movie) => {
       return id === movie.id;
     });
     setSingleView(singleMovie);

@@ -4,14 +4,15 @@ import Nav from './Nav';
 import Banner from './Banner';
 import MoviesContainer from './MoviesContainer';
 import { useState, useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 import WatchList from './WatchList';
-import Search from './Search';
+// import Search from './Search';
 
 
 const App = () => {
   const apiKey = process.env.REACT_APP_API_KEY 
+  const navigate = useNavigate();
   const location = useLocation();
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState('');
@@ -130,7 +131,6 @@ let url;
     setPageCount(1);
   };
 
-  //is there another way to do this? like by name?
   const getSingleMovieDetails = (id) => {
     const allTitles = [...movies, ...specificGenre, ...specificMovie, ...watchList]
     const singleMovie = allTitles.find((movie) => {

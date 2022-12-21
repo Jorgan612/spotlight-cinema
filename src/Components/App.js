@@ -132,7 +132,7 @@ let url;
 
   //is there another way to do this? like by name?
   const getSingleMovieDetails = (id) => {
-    const allTitles = [...movies, ...specificGenre, ...specificMovie]
+    const allTitles = [...movies, ...specificGenre, ...specificMovie, ...watchList]
     const singleMovie = allTitles.find((movie) => {
       return id === movie.id;
     });

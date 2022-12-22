@@ -6,15 +6,7 @@
   background-color: #333;
 }
 
-.search-bar-input {
-  width: 85%;
-  background-color: #dedbdb;
-  border: none;
-  border-radius: 15px;
-  padding: 10px;
-  font-size: 1.5em;
-}
-
-.search-bar-input:focus {
-  outline:auto #EBAB47;
+.empty-watchlist-p {
+  color: #EBAB47;
+  font-size: larger;
 }

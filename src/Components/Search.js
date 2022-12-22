@@ -1,5 +1,5 @@
 import '../SCSS/MoviesContainer.css';
-import '../SCSS/Nav.css'
+import '../SCSS/Search.css'
 
 const Search = ({ setSearchValue, searchValue }) => {
   return (

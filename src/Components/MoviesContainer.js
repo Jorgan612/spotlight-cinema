@@ -1,10 +1,7 @@
 import '../SCSS/MoviesContainer.css';
 import MovieCard from './MovieCard';
-import Search from './Search';
 
-
-
-const MoviesContainer = ({ movies, getSingleMovieDetails, addToWatchList, watchList, removeFromWatchList, specificMovie, setSearchValue, searchValue  }) => {
+const MoviesContainer = ({ movies, getSingleMovieDetails, addToWatchList, watchList, removeFromWatchList, specificMovie }) => {
   let movieList;
   if (specificMovie.length > 0) {
     movieList = specificMovie.map((movie, index) => {
@@ -45,11 +42,10 @@ const MoviesContainer = ({ movies, getSingleMovieDetails, addToWatchList, watchL
 };
   return (
     <section className='movies-container'>
-      <div className='search-bar-input'>
-        {/* <Search setSearchValue={setSearchValue} searchValue={searchValue}  /> */}
-        <div className='divider-div'></div>
-      </div>
         {movieList}
+        {movieList.length > 0 ? <div className='titles-container'> </div> 
+      : <p className='empty-watchlist-p'>You have no movies saved to your watchlist at this time.</p>}
+      <div className='back-btn-div'></div>
     </section>  
   )
 };

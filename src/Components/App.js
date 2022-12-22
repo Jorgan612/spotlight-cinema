@@ -164,7 +164,7 @@ let url;
       <Routes>
         <Route path='/' element={<><Search setSearchValue={setSearchValue} searchValue={searchValue} /><MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} specificMovie={specificMovie}  setSearchValue={setSearchValue} searchValue={searchValue}/></>} />
         <Route path='/moviedetails' element={<MovieDetails getSingleMovieDetails={getSingleMovieDetails} singleView={singleView} />} />
-        <Route path='/watchlist' element={<MoviesContainer movies={watchList} watchList={watchList} removeFromWatchList={removeFromWatchList} getSingleMovieDetails={getSingleMovieDetails} specificMovie={specificMovie} setIsSearching={setIsSearching} isSearching={isSearching} />} />
+        <Route path='/watchlist' element={<><WatchList /><MoviesContainer movies={watchList} watchList={watchList} removeFromWatchList={removeFromWatchList} getSingleMovieDetails={getSingleMovieDetails} specificMovie={specificMovie} setIsSearching={setIsSearching} isSearching={isSearching} /></>} />
         <Route path='/genres' element={<MoviesContainer movies={specificGenre} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} specificMovie={specificMovie} setSearchValue={setSearchValue} searchValue={searchValue} />}/>
       </Routes>
         {location.pathname === '/' && <div className='buttons-div'>

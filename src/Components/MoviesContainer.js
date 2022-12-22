@@ -46,7 +46,7 @@ const MoviesContainer = ({ movies, getSingleMovieDetails, addToWatchList, watchL
   return (
     <section className='movies-container'>
       <div className='search-bar-input'>
-        <Search setSearchValue={setSearchValue} searchValue={searchValue}  />
+        {/* <Search setSearchValue={setSearchValue} searchValue={searchValue}  /> */}
         <div className='divider-div'></div>
       </div>
         {movieList}

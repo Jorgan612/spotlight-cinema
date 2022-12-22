@@ -9,6 +9,11 @@ import homepage from '../icons/homepage.png'
 // import Search from './Search';
 
 const Nav = ({ genres, showGenreMovies, setSearchValue, searchValue }) => {
+
+  const handleClick = () => {
+    setSearchValue('')
+  }
+  
   const dropdownList = genres.map((genre) => {
       return <option key={genre.id} id={genre.id} value={genre.id}>{genre.name}</option>
     })
@@ -21,7 +26,7 @@ const Nav = ({ genres, showGenreMovies, setSearchValue, searchValue }) => {
       <src></src>
       <div className='watchlist-genre-container'>
         <Link to='/watchlist'>
-          <button className='selector watchlist-btn'>Watchlist</button>
+          <button className='selector watchlist-btn' onClick={handleClick}>Watchlist</button>
         </Link>
         <Link to='/genres'>
           <select className='dropdown selector' onChange={event => showGenreMovies(event.target.value)}>

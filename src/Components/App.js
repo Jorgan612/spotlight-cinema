@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 import WatchList from './WatchList';
-// import Search from './Search';
+import Search from './Search';
 
 
 const App = () => {
@@ -158,13 +158,13 @@ let url;
   
   return (
     <div className='app selector'>
-      <Nav genres={genres} setError={setError} showGenreMovies={showGenreMovies} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} />
+      <Nav genres={genres} setError={setError} showGenreMovies={showGenreMovies} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} setSearchValue={setSearchValue} />
       {location.pathname === '/' && movies.length > 0 && <Banner video={video} /> }
       <div className='divider-div'></div>
       <Routes>
-        <Route path='/' element={<MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} specificMovie={specificMovie}  setSearchValue={setSearchValue} searchValue={searchValue}/>} />
+        <Route path='/' element={<><Search setSearchValue={setSearchValue} searchValue={searchValue} /><MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} specificMovie={specificMovie}  setSearchValue={setSearchValue} searchValue={searchValue}/></>} />
         <Route path='/moviedetails' element={<MovieDetails getSingleMovieDetails={getSingleMovieDetails} singleView={singleView} />} />
-        <Route path='/watchlist' element={<WatchList watchList={watchList} removeFromWatchList={removeFromWatchList} getSingleMovieDetails={getSingleMovieDetails} specificMovie={specificMovie} setIsSearching={setIsSearching} isSearching={isSearching}  />} />
+        <Route path='/watchlist' element={<MoviesContainer movies={watchList} watchList={watchList} removeFromWatchList={removeFromWatchList} getSingleMovieDetails={getSingleMovieDetails} specificMovie={specificMovie} setIsSearching={setIsSearching} isSearching={isSearching} />} />
         <Route path='/genres' element={<MoviesContainer movies={specificGenre} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} specificMovie={specificMovie} setSearchValue={setSearchValue} searchValue={searchValue} />}/>
       </Routes>
         {location.pathname === '/' && <div className='buttons-div'>

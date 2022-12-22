@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import spotlight from '../icons/spotlight.png';
 import homepage from '../icons/homepage.png'
 
-const Nav = ({ genres, showGenreMovies, setSearchValue, searchValue }) => {
+const Nav = ({ genres, showGenreMovies, setSearchValue }) => {
 
   const handleClick = () => {
     setSearchValue('')

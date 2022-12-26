@@ -2,6 +2,7 @@ import '../SCSS/MovieDetails.css';
 import { Link } from 'react-router-dom';
 
 const MovieDetails = ({ singleView }) => {
+  console.log("singleView", singleView)
   return (
     <div className='movie-details-div'>
       <div className='details-border-div'>

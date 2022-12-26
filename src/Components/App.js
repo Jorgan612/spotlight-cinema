@@ -12,12 +12,11 @@ import Search from './Search';
 
 const App = () => {
   const apiKey = process.env.REACT_APP_API_KEY 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const location = useLocation();
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState('');
   const [pageCount, setPageCount] = useState(1);
-  const [singleView, setSingleView] = useState({});
   const [genres, setGenres] = useState([]);
   const [video, setVideo] = useState([]);
   const [specificGenre, setSpecificGenre] = useState([]);
@@ -25,9 +24,17 @@ const App = () => {
   const [searchValue, setSearchValue] = useState('');
   const [watchList, setWatchList] = useState(() => {
     const savedTitles = JSON.parse(localStorage.getItem('watchList'));
-    const initialValue = savedTitles || [];
+    let initialValue = savedTitles || [];
     return initialValue;
   });
+  // const [singleView, setSingleView] = useState({});
+
+ const [singleView, setSingleView] = useState(() => {
+    const singleMovieView = JSON.parse(localStorage.getItem('singleView'));
+    let initialValue = singleMovieView 
+    return initialValue;
+  });
+
 
 
 
@@ -79,6 +86,7 @@ let url;
     getGenre();
     showGenreMovies();
     localStorage.setItem('watchList', JSON.stringify(watchList));
+    localStorage.setItem('singleView', JSON.stringify(singleView));
   }, [pageCount, location]);
   
     const showGenreMovies = async (event) => {

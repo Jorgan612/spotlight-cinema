@@ -12,7 +12,6 @@ import Search from './Search';
 
 const App = () => {
   const apiKey = process.env.REACT_APP_API_KEY 
-  // const navigate = useNavigate();
   const location = useLocation();
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState('');
@@ -27,8 +26,6 @@ const App = () => {
     let initialValue = savedTitles || [];
     return initialValue;
   });
-  // const [singleView, setSingleView] = useState({});
-
  const [singleView, setSingleView] = useState(() => {
     const singleMovieView = JSON.parse(localStorage.getItem('singleView'));
     let initialValue = singleMovieView 

@@ -180,4 +180,4 @@ let url;
   )
 };
 
-export default App
+export default App;

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../SCSS/App.css';
+import '../CSS/App.css';
 import Nav from './Nav';
 import Banner from './Banner';
 import MoviesContainer from './MoviesContainer';

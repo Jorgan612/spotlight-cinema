@@ -5,7 +5,7 @@ const WatchList = () => {
   return (
     <div className='watchlist-titles-div'>
       <h1 className='selector'>Watchlist</h1>
-      <Link to='/'>
+      <Link to='/home'>
           <button className='selector'>Return Home</button>
         </Link>
     </div>

@@ -27,7 +27,7 @@ const Nav = ({ genres, showGenreMovies, setSearchValue }) => {
           {dropdownList}
          </select>
         </Link>
-        <Link to='/'>
+        <Link to='/home'>
           <img className='return-home-btn' src={homepage}></img>
         </Link>
       </div>

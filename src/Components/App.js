@@ -164,15 +164,15 @@ let url;
   return (
     <div className='app selector'>
       <Nav genres={genres} showGenreMovies={showGenreMovies}  setSearchValue={setSearchValue} />
-      {location.pathname === '/' && movies.length > 0 && <Banner video={video} /> }
+      {location.pathname === '/home' && movies.length > 0 && <Banner video={video} /> }
       <div className='divider-div'></div>
       <Routes>
-        <Route path='/' element={<><Search setSearchValue={setSearchValue} searchValue={searchValue} /><MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} specificMovie={specificMovie} /></>} />
+        <Route path='/home' element={<><Search setSearchValue={setSearchValue} searchValue={searchValue} /><MoviesContainer movies={movies} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} specificMovie={specificMovie} /></>} />
         <Route path='/moviedetails' element={<MovieDetails singleView={singleView} />} />
         <Route path='/watchlist' element={<><WatchList /><MoviesContainer movies={watchList} watchList={watchList} removeFromWatchList={removeFromWatchList} getSingleMovieDetails={getSingleMovieDetails} specificMovie={specificMovie}  /></>} />
         <Route path='/genres' element={<MoviesContainer movies={specificGenre} getSingleMovieDetails={getSingleMovieDetails} addToWatchList={addToWatchList} watchList={watchList} removeFromWatchList={removeFromWatchList} specificMovie={specificMovie} setSearchValue={setSearchValue} searchValue={searchValue} />}/>
       </Routes>
-        {location.pathname === '/' && <div className='buttons-div'>
+        {location.pathname === '/home' && <div className='buttons-div'>
         {pageCount > 1 && <button className='btn selector' onClick={previousChangePage}>Previous</button>}
         <button className='btn selector' onClick={nextChangePage}>Next</button>
         {pageCount > 5 && <button className='btn selector' onClick={returnToPageOne}>Return to Start</button>}

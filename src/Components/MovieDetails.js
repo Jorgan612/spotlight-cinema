@@ -23,7 +23,7 @@ const MovieDetails = ({ singleView }) => {
         </div>
       </div>
       <footer className='details-footer'>
-        <Link to='/'>
+        <Link to='/home'>
           <button className='details-back-btn selector'>Back</button>
         </Link>
       </footer>

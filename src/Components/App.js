@@ -8,6 +8,7 @@ import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 import WatchList from './WatchList';
 import Search from './Search';
+import Footer from './Footer';
 
 
 const App = () => {
@@ -176,6 +177,7 @@ let url;
         <button className='btn selector' onClick={nextChangePage}>Next</button>
         {pageCount > 5 && <button className='btn selector' onClick={returnToPageOne}>Return to Start</button>}
       </div>}
+      <Footer />
     </div>
   )
 };

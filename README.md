@@ -1,6 +1,6 @@
 # ✨ Spotlight Cinema 🍿 🎬   
 
-Visit our deployed app [here](https://spotlight-cinema.surge.sh/)
+Visit the deployed app [here](https://spotlight-cinema.surge.sh/)!
 
 
 ## Table of Contents

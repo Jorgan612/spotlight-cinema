@@ -15,7 +15,7 @@ Visit the deployed app [here](https://spotlight-cinema.surge.sh/)!
   - [Project Specs](#project-specs)
 
 ## Abstract
-The goal was to build a React app with the [Movie Database API](https://www.themoviedb.org/). This app allows users to view movies from the entire collection, by genre, or searched titles. A user can search for a movie by title and their search results will filter in real time. If a user clicks on a movie it will show the user details about it. Users will also be able to add movies to a watchlist that will show up on a seperate `watchlist` page. Additionally, when visiting the site, and on the homepage, a movie trailer will be selected at random for viewing. 
+The goal was to build a React app with the [Movie Database API](https://www.themoviedb.org/). This app allows users to view movies from the entire collection, by genre, or searched titles. A user can search for a movie by title and their search results will filter in real time. If a user clicks on a movie it will show the user details about it. Users will also be able to add movies to a watchlist that will show up on a seperate `watchlist` page. Additionally, when visiting the homepage, a movie trailer will be selected at random for viewing. 
 
 ## Technologies
   - JavaScript
@@ -45,7 +45,7 @@ The goal was to build a React app with the [Movie Database API](https://www.them
   - Good communication and workflow.  
 
 ## Challenges + Improvements
-  - Begun as a paired project, this was finished a solo project, THUS troubleshooting/debugging became a unique challenge at times. 
+  - Begun as a paired project, this was finished a solo project, thus troubleshooting/debugging became a unique challenge at times. 
   - Implement error boundaries for better error handling.  
 
 ## Future Iterations

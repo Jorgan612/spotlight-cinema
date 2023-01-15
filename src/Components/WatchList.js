@@ -1,4 +1,4 @@
-import '../SCSS/WatchList.css';
+import '../CSS/WatchList.css';
 import { Link } from 'react-router-dom';
 
 const WatchList = () => { 

@@ -1,4 +1,4 @@
-import '../SCSS/Banner.css';
+import '../CSS/Banner.css';
 import ReactPlayer from "react-player";
 
 const Banner = ( { video } ) => {

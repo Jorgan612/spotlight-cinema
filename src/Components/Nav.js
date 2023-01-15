@@ -1,4 +1,4 @@
-import '../SCSS/Nav.css';
+import '../CSS/Nav.css';
 import { Link } from 'react-router-dom';
 import spotlight from '../icons/spotlight.png';
 import homepage from '../icons/homepage.png'

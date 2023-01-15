@@ -1,4 +1,4 @@
-import '../SCSS/MovieDetails.css';
+import '../CSS/MovieDetails.css';
 import { Link } from 'react-router-dom';
 
 const MovieDetails = ({ singleView }) => {

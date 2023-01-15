@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import '../SCSS/MovieCard.css';
+import '../CSS/MovieCard.css';
 
 const MovieCard  = ( { img, id, getSingleMovieDetails, addToWatchList, isOnWatchList, removeFromWatchList } ) => {
  

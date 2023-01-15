@@ -1,4 +1,4 @@
-import '../SCSS/MoviesContainer.css';
+import '../CSS/MoviesContainer.css';
 import MovieCard from './MovieCard';
 
 const MoviesContainer = ({ movies, getSingleMovieDetails, addToWatchList, watchList, removeFromWatchList, specificMovie }) => {

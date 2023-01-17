@@ -36,7 +36,6 @@
 .watchlist-add:hover {
   transition: 1s;
   background-color: #E32636;
-  border: 2px solid #c71928;
 }
 
 .watchlist-remove {

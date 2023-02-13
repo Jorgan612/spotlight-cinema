@@ -25,7 +25,8 @@
 }
 
 button {
-  color: #EBAB47;
+  /* color: #EBAB47; */
+  color: #AF7C00 ;
   cursor: pointer;
   padding: 5px;
   margin: 5px;
@@ -35,7 +36,9 @@ button {
 }
 
 button:hover {
-  color: #fcc771;
+  /* color: #fcc771; */
+    color: #AF7C00 ;
+
 }
 
   

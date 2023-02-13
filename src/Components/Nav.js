@@ -16,7 +16,7 @@ const Nav = ({ genres, showGenreMovies, setSearchValue }) => {
   return (
     <nav className='nav'>
       <h1 className='app-title'>Spotlight Cinema</h1>
-      <img className='spotlight-logo' src={spotlight}/>
+      <img className='spotlight-logo' alt='spotlight-clipart'src={spotlight}/>
       <div className='watchlist-genre-container'>
         <Link to='/watchlist'>
           <button className='selector watchlist-btn' onClick={handleClick}>Watchlist</button>
@@ -28,7 +28,7 @@ const Nav = ({ genres, showGenreMovies, setSearchValue }) => {
          </select>
         </Link>
         <Link to='/home'>
-          <img className='return-home-btn' src={homepage}></img>
+          <img className='return-home-btn' alt='house-clipart' src={homepage}></img>
         </Link>
       </div>
     </nav>

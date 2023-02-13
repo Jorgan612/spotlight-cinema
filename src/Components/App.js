@@ -4,11 +4,10 @@ import Nav from './Nav';
 import Banner from './Banner';
 import MoviesContainer from './MoviesContainer';
 import { useState, useEffect } from 'react';
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import MovieDetails from './MovieDetails';
 import WatchList from './WatchList';
 import Search from './Search';
-import Footer from './Footer';
 
 
 const App = () => {
@@ -32,9 +31,6 @@ const App = () => {
     let initialValue = singleMovieView 
     return initialValue;
   });
-
-
-
 
   const getMovies = async () => {
     const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${apiKey}&page=${pageCount}`;

@@ -7,6 +7,8 @@
 }
 
 .empty-watchlist-p {
-  color: #EBAB47;
+  /* color: #EBAB47; */
+    color: #AF7C00 ;
+
   font-size: larger;
 }

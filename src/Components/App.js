@@ -173,7 +173,6 @@ let url;
         <button className='btn selector' onClick={nextChangePage}>Next</button>
         {pageCount > 5 && <button className='btn selector' onClick={returnToPageOne}>Return to Start</button>}
       </div>}
-      {/* <Footer /> */}
     </div>
   )
 };

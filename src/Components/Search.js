@@ -5,6 +5,7 @@ const Search = ({ setSearchValue, searchValue }) => {
   return (
     <section className='movie-search-bar'>
        <input 
+        aria-label='Search bar'
         className='search-bar-input selector'
         type='text'
         placeholder='Search by title...'

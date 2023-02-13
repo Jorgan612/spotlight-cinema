@@ -25,6 +25,7 @@ The goal was to build a React app with the [Movie Database API](https://www.them
   - React Player
   - VScode
   - TMDB API
+  - Lighthouse Audit: 97%
   - Cypress (In progress)
 
 ## App Overview

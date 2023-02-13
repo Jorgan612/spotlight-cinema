@@ -42,6 +42,7 @@ const App = () => {
     } catch(error) {
       setError(error.message);
     }
+    console.log("url", url)
   };
 
   const getGenre = async () => {

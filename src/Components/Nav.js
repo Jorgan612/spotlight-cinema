@@ -16,19 +16,19 @@ const Nav = ({ genres, showGenreMovies, setSearchValue }) => {
   return (
     <nav className='nav'>
       <h1 className='app-title'>Spotlight Cinema</h1>
-      <img className='spotlight-logo' src={spotlight}/>
+      <img className='spotlight-logo' alt='spotlight-clipart'src={spotlight}/>
       <div className='watchlist-genre-container'>
-        <Link to='/watchlist'>
+        <Link to='/watchlist' aria-label="Click to view movie watchlist">
           <button className='selector watchlist-btn' onClick={handleClick}>Watchlist</button>
         </Link>
-        <Link to='/genres'>
+        <Link to='/genres' aria-label="Click to view movies of specific genre">
           <select className='dropdown selector' onChange={event => showGenreMovies(event.target.value)}>
           <option value="genres">All Genres</option>
           {dropdownList}
          </select>
         </Link>
-        <Link to='/home'>
-          <img className='return-home-btn' src={homepage}></img>
+        <Link to='/home' aria-label="Click to return to homepage">
+          <img className='return-home-btn' alt='house-clipart' src={homepage}></img>
         </Link>
       </div>
     </nav>

@@ -22,11 +22,9 @@ const MovieDetails = ({ singleView }) => {
           <p className='details-overview'>{singleView.overview}</p>
         </div>
       </div>
-      <footer className='details-footer'>
-        <Link to='/home'>
+        <Link to='/home' aria-label="Click to return to home page">
           <button className='details-back-btn selector'>Back</button>
         </Link>
-      </footer>
     </div>
   )
 };

@@ -5,6 +5,7 @@ const Banner = ( { video } ) => {
   return (
       <section className='banner-section'>
         <ReactPlayer 
+          aria-label='You-Tube Trailer Video'
           className='player-wrapper'
           url={`https://www.youtube.com/watch?v=${video?.videos?.results[0]?.key}`}
           width='40%'

@@ -2,26 +2,28 @@
   width: 20%;
   margin: 8px;
   box-shadow: 3px 3px 5px #000;
+  border-radius: .5em;
 }
 
 .movie-card:hover {
   transition: .5s;
-  /* transform: scale(1.1); */
   border: 4px solid #EBAB47;
-  /* margin: 20px; */
+  border-radius: .5em;
 }
 
 .poster-img {
   height: 100%;
   width: 100%;
+  border-radius: .5em;
 }
 
 .watchlist-add {
-  height: 10%;
-  width: 15%;
+  height: 13%;
+  width: 20%;
   border:2px solid #c58e36;
-  border-radius: 50%;
+  border-radius: 20%;
   background-color: #EBAB47;
+  opacity: .8;
   box-shadow: 3px 3px 5px #000;
   transform: translate(0px, -80px);
   margin-left: 10px;
@@ -30,20 +32,19 @@
   font-size: 2em;
   text-align: center;
 }
-
 
 .watchlist-add:hover {
   transition: 1s;
   background-color: #E32636;
-  border: 2px solid #c71928;
 }
 
 .watchlist-remove {
-  height: 10%;
-  width: 15%;
+  height: 13%;
+  width: 20%;
   background-color: #E32636;
   border: 2px solid #c71928;
-  border-radius: 50%;
+  border-radius: 20%;
+  opacity: .8;
   box-shadow: 3px 3px 5px #000;
   transform: translate(0px, -80px);
   margin-left: 10px;
@@ -53,7 +54,3 @@
   text-align: center;
 }
 
-/* .watchlist-remove:hover {
-  background-color: #EBAB47;
-  border:2px solid #c58e36;
-} */

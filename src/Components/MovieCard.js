@@ -7,7 +7,7 @@ const MovieCard  = ( { img, id, getSingleMovieDetails, addToWatchList, isOnWatch
   const removeBtn = <button className={`watchlist-remove btn`} onClick={() => removeFromWatchList(id)}>✖️</button>
   return (
     <div className='movie-card banner-card' onClick={() => getSingleMovieDetails(id)}>
-      <Link to='/moviedetails'>
+      <Link to='/moviedetails' aria-label='Click to see details about specific movie'>
         <img className='poster-img banner-img' id={id} src={`https://image.tmdb.org/t/p/w500${img}`} alt='movie poster'/>
       </Link>
       {isOnWatchList ? removeBtn : addBtn}

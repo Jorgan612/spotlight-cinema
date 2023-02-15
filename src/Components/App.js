@@ -34,7 +34,7 @@ const App = () => {
 
   const getMovies = async () => {
     const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${apiKey}&page=${pageCount}`;
-    setError('');
+    setError(error);
     try {
       const response = await fetch(url);
       const movies = await response.json();
@@ -42,11 +42,12 @@ const App = () => {
     } catch(error) {
       setError(error.message);
     }
+    console.log("url", url)
   };
 
   const getGenre = async () => {
     const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`;
-    setError('');
+    setError(error);
     try {
       const response = await fetch(url);
       const genres = await response.json();
@@ -60,7 +61,7 @@ const App = () => {
 let url;
     const randomNum = Math.floor(Math.random() * (1000 - 2 + 1)) + 2;     
        url = `https://api.themoviedb.org/3/movie/${randomNum}?api_key=${apiKey}&language=en-US&append_to_response=videos`;
-        setError();
+        setError(error);
         try {
           const response = await fetch(url);
           const videoResponse = await response.json();
@@ -85,7 +86,7 @@ let url;
   
     const showGenreMovies = async (event) => {
     const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&with_genres=${event}`; 
-    setError('');
+    setError(error);
     try {
       const response = await fetch(url);
       const genres = await response.json();
@@ -99,7 +100,7 @@ let url;
   useEffect(() => {
      const searchMoviesByTitle = async (search) => {
      const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${search}`; 
-    setError('');
+    setError(error);
     try {
       const response = await fetch(url);
       const specificMovie = await response.json();

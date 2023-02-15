@@ -1,6 +1,7 @@
-describe('Landing Page User Flow', () => {
+describe('Landing Page User Flows', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/home');
+    cy.intercept('GET', 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=eb5e7e86d8d7c0c5c8fe773faa42a22e&page=1', {fixture: "movies.json"})
+      .visit('http://localhost:3000/home');
   });
 
   it('should be able to visit the url', () => {
@@ -16,10 +17,10 @@ describe('Landing Page User Flow', () => {
   });
 
   it('should see a home button on the nav', () => {
-      cy.get('.nav')
-        .get('.return-home-btn')
-        .click()
-        .should('be.visible');
+    cy.get('.nav')
+      .get('.return-home-btn')
+      .click()
+      .should('be.visible');
   });
 
   it('should see an option to visit the watchlist on the nav bar, and be able to click it to visit the user watchlist', () => {
@@ -40,5 +41,4 @@ describe('Landing Page User Flow', () => {
       .url()
       .should('eq', 'http://localhost:3000/genres')
   });
-
-  });
+});
